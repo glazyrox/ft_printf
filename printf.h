@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 14:03:43 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/24 20:29:21 by rgwayne-         ###   ########.fr       */
+/*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
+/*   Updated: 2019/11/24 19:37:05 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "printf.h"
+#ifndef PRINTF_H
+#define PRINTF_H
 
-int main(int ac, char **av) 
+#include <stdarg.h>
+#include "libft/includes/libft.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct  s_struct
 {
-    int a = 200;
-    int b = -144;
-    int c = 14;
-    int d = 130;
-    printf("%10d", d);
-    ft_printf("%d %d %i %d", a, b, c, d);
-    return (0);
-}
+    int size;
+    char type;
+    int plus;
+    int minus;
+    int space;
+    void *value; // значение из стэка
+}               t_struct;
+
+int ft_printf(const char *format, ...);
+int ft_type(char *format, va_list list);
+void struct_zero(t_struct *inform);
+
+#endif

@@ -6,31 +6,56 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:28:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/21 19:53:58 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/24 20:09:50 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-char ft_validator(char *string)
+int ft_flag(t_struct *inform, char *format)
 {
-
+    printf("\nVALUE %d\n", (int)inform->value);
+    free(inform);
+    return (0);
 }
 
-int ft_myprintf(const char *format, ...)
+int ft_type(char *format, va_list list)
 {
-    t_printf p;
+    t_struct *inform;
 
-    ft_bzero(&p, sizeof(p));
-    p.format = (char *)format;
-    va_start(p.ap, 3);
-    p.stack = va_arg(p.ap, char *); // не точно
-    printf("%s", p.stack);
-    p.stack = va_arg(p.ap, char *); 
-    printf("%s", p.stack);
-    p.stack = va_arg(p.ap, char *);
-    printf("%d", p.stack);
-    int a = 42;
-    va_end (p.ap);
+    if (!(inform = (t_struct*)malloc(sizeof(t_struct))))
+        return(0);
+    inform->size = 10;
+    struct_zero(inform);
+    while (*format)
+    {
+        if (*format == 'd' || *format == 'i')
+        {
+            inform->type = 'd';
+            inform->value = va_arg(list, int *);
+            ft_flag(inform, format);
+            break;            
+        }
+        format++;
+    }
+    return (0);
+}
+
+int ft_printf(const char *format, ...)
+{
+    va_list list;
+    void *value;
+    
+    va_start(list, format);
+    // int stack = va_arg(list, int *); // не точно
+    while (*format)
+    {
+        if (*format == '%')
+        {
+            ft_type((char *)format, list);
+        }
+        format++;
+    }
+    va_end (list);
     return (0);
 }

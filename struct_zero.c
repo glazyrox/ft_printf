@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   struct_zero.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 14:03:43 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/24 20:29:21 by rgwayne-         ###   ########.fr       */
+/*   Created: 2019/11/24 17:51:29 by rgwayne-          #+#    #+#             */
+/*   Updated: 2019/11/24 17:55:15 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "printf.h"
 
-int main(int ac, char **av) 
+void struct_zero(t_struct *inform)
 {
-    int a = 200;
-    int b = -144;
-    int c = 14;
-    int d = 130;
-    printf("%10d", d);
-    ft_printf("%d %d %i %d", a, b, c, d);
-    return (0);
+    inform->minus = 0;
+    inform->plus = 0;
+    inform->size = 0;
+    inform->space = 0;
+    inform->type = '\0';
+    inform->value = NULL;
 }
