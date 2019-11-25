@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_zero.c                                      :+:      :+:    :+:   */
+/*   converser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/24 17:51:29 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/25 20:09:22 by rgwayne-         ###   ########.fr       */
+/*   Created: 2019/11/25 20:02:37 by rgwayne-          #+#    #+#             */
+/*   Updated: 2019/11/25 20:22:39 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void struct_zero(t_struct *inform)
+int	ft_new_atoi(const char *str, int start, int end)
 {
-    inform->minus = 0;
-    inform->plus = 0;
-    inform->size = 0;
-    inform->space = 0;
-    inform->sharp = 0;
-    inform->zero = 0;
-    inform->type = '\0';
-    inform->value = NULL;
-    inform->width = 0;
-    inform->precision = 0;
+	int				i;
+	long long int	nbr;
+
+	i = start;
+	nbr = 0;
+	while ((str[i] == 32) || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9' && i < end)
+		nbr = 10 * nbr + (str[i++] - '0');
+	return (nbr);
 }
