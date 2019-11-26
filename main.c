@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:03:43 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/25 20:32:10 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:45:06 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int ac, char **av)
     int b = -144;
     int c = 14;
     int d = 130;
-    printf("%+5-.2d\n", a);
-    ft_printf("%.55d %+-d", a, b);
+    printf("%+1.5d %+-d", a, b);
+    ft_printf("%10.55d %+-d", a, b);
     return (0);
 }

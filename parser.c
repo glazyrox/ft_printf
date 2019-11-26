@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/25 20:34:43 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:45:43 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int ft_width(t_struct *inform)
 {
-    free(inform);
+    free(inform); 
     return (0);
 }
 
@@ -47,7 +47,8 @@ int ft_flag(t_struct *inform, char *format, int stop)
         else if (format[i] == '-')
             inform->plus = 1;   
         else if (format[i] == 32)
-            inform->space = 1; 
+            inform->space = 1;
+        else if
         else if (format[i] == 48)
             inform->zero = 1;
     }
