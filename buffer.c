@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 14:03:43 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/27 20:28:29 by rgwayne-         ###   ########.fr       */
+/*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
+/*   Updated: 2019/11/27 20:47:49 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "printf.h"
 
-int main(int ac, char **av) 
+char ft_make_buffer()
 {
-    int a = 200500;
-    int b = -144;
-    int c = 14;
-    int d = 130;
-    printf("% 20.15lld %+10hld %.25hhlld", a, b, c);
-    ft_printf("% 20.15lld %+10hld %.25hhlld", a, b, c);
-    return (0);
+    const char *buff;
 }

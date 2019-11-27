@@ -6,76 +6,79 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/26 20:45:02 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/27 20:42:28 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int ft_modifiers(char *format, t_struct *inform)
+int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size)
 {
     int i;
 
     i = 0;
-    while(format[i++] != '\0')
+    while(i < stop)
     {
         if (format[i] == 'h')
         {
             if (format[i + 1] == 'h')
+            {
                 inform->hh = 1;
+                i++;
+            }
             else
                 inform->h = 1;
         }
         if (format[i] == 'l')
         {
             if (format[i + 1] == 'l')
+            {
                 inform->ll = 1;
+                i++;
+            }
             else
                 inform->l = 1;
         }
+        i++;
     }
-    printf("\n TUT %d", inform->value);
-    free(inform);
-    //backslash(inform, format);
+    ft_maker(inform, buff_size);
     return (0); 
 }
 
-int ft_width(t_struct *inform, char *format, int stop)
+int ft_width(t_struct *inform, char *format, int stop, int formodifiers, t_buff *buff_size)
 {
     int i;
     
     i = 0;
-    while (format[i++])
+    while (i++ < stop)
     {
         if (format[i] >= 49 && format[i] <= 57)
             inform->width = ft_new_atoi(format, i, stop);
     }
-    ft_modifiers(format, inform);
+    ft_modifiers(format, inform, formodifiers, buff_size);
     return (0);
 }
 
-int ft_precision(t_struct *inform, char *format, int stop)
+int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size)
 {
     int i;
-    char *buff_format;
-
-    buff_format = format;
+    
     i = 0;
     while (i++ < stop)
     {
-        if (buff_format[i++] == '.')
+        if (format[i] == '.')
         {
             inform->zero = 0; // не точно, пока хотя бы так)
-            inform->precision = ft_new_atoi(buff_format, i, stop);
-            ft_width(inform, format, i--);
+            inform->precision = ft_new_atoi(format, i + 1, stop);
+            ft_width(inform, format, i--, stop, buff_size);
             return (0);
         }
     }
-    ft_width(inform, format, stop);
+    ft_width(inform, format, stop, i, buff_size);
     return (0);
 }
 
-int ft_flag(t_struct *inform, char *format, int stop)
+int ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size)
 {   
     int i;
     
@@ -85,7 +88,7 @@ int ft_flag(t_struct *inform, char *format, int stop)
         if (format[i] >= 49 && format[i] <= 57)
         {
             inform->stopflags = 1;
-            if (inform->stopflags == 1)
+            if (inform->stopflags == 1) // лол
                 break;
         }
         else if (format[i] == '+')
@@ -97,29 +100,26 @@ int ft_flag(t_struct *inform, char *format, int stop)
         else if (format[i] == 48)
             inform->zero = 1;
     }
-    ft_precision(inform, format, stop);
+    ft_precision(inform, format, stop, buff_size);
     return (0);
 }
 
-int ft_type(char *format, va_list list)
+char *ft_type(char *format, va_list list, t_buff *buff_size)
 {
-    t_struct *inform;
     int i;
+    t_struct *inform;
     
     i = 0;
     inform = ft_memalloc(sizeof(t_struct));
-    // if (!(inform = (t_struct*)malloc(sizeof(t_struct))))
-    //     return(0);
-    inform->size = 10;
-    struct_zero(inform);
     while (format[i++])
     {
         if (format[i] == 'd' || format[i] == 'i') // отрефактори в функцию, если надо будет(скорее всего надо)
         {
             inform->type = 'd';
             inform->value = va_arg(list, int);
-            ft_flag(inform, (char *)format, i);
-            break;            
+            inform->format = 1;
+            ft_flag(inform, (char *)format, i, buff_size);
+            break;       
         }
     }
     return (0);
