@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/27 20:42:28 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/28 21:17:34 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size)
         }
         i++;
     }
-    ft_maker(inform, buff_size);
+    ft_value_maker(inform, buff_size);
     return (0); 
 }
 
@@ -53,7 +53,11 @@ int ft_width(t_struct *inform, char *format, int stop, int formodifiers, t_buff 
     while (i++ < stop)
     {
         if (format[i] >= 49 && format[i] <= 57)
+		{
+			if (format[i - 1]  == '-')
+				inform->widthisneg = 1;
             inform->width = ft_new_atoi(format, i, stop);
+		}
     }
     ft_modifiers(format, inform, formodifiers, buff_size);
     return (0);
@@ -116,7 +120,7 @@ char *ft_type(char *format, va_list list, t_buff *buff_size)
         if (format[i] == 'd' || format[i] == 'i') // отрефактори в функцию, если надо будет(скорее всего надо)
         {
             inform->type = 'd';
-            inform->value = va_arg(list, int);
+            inform->value_d = value_d(list);
             inform->format = 1;
             ft_flag(inform, (char *)format, i, buff_size);
             break;       

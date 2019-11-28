@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/27 20:47:50 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/28 21:00:09 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ typedef struct  s_struct
     int zero; //f
     int stopflags; // стоп флагов
     int width;
+	int widthisneg; // ширина отрицательная
     int precision; // точность
-    void *value; // значение из стэка
+    int value_d; // значение из стэка для d/i
     int h;
     int hh;
     int l;
@@ -43,6 +44,7 @@ typedef struct  s_struct
 typedef struct s_buff
 {
     size_t buff_size;
+    va_list list;
 }              t_buff;
 
 int ft_printf(const char *format, ...);
@@ -51,6 +53,8 @@ int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size);
 int	ft_new_atoi(const char *str, int start, int end);
 int ft_width(t_struct *inform, char *format, int stop, int formodifiers, t_buff *buff_size);
 int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size);
-int ft_maker(t_struct *inform, t_buff *buff_size);
+
+int ft_value_maker(t_struct *inform, t_buff *buff_size);
+int value_d(va_list list);
 
 #endif
