@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/28 21:00:09 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:31:06 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 typedef struct  s_struct
 {
-    int size;
     char type;
     int plus; //f
     int minus; //f
@@ -39,11 +38,13 @@ typedef struct  s_struct
     int l;
     int ll;
     int format;
+	size_t final_size; // общий размер строки за одну обработку!
 }               t_struct;
 
 typedef struct s_buff
 {
     size_t buff_size;
+	size_t size_of_all; // каждый раз после обработки считаем сумму 
     va_list list;
 }              t_buff;
 

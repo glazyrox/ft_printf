@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:28:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/28 19:02:38 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/29 17:08:03 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ int ft_printf(const char *format, ...)
     while (*format)
     {
         if (*format == '%')
-        {
             ft_type((char *)format, list, buff_size);
-        }
         else
         {
             //write(1, format++, 1);
