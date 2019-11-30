@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:28:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/29 17:08:03 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/30 16:59:34 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int ft_printf(const char *format, ...)
     
     buff_size = ft_memalloc(sizeof(t_buff));
     buff_size->buff_size = 100;
+    buff_size->govno = 1;
     // int stack = va_arg(list, int *); // не точно
     while (*format)
     {
@@ -31,6 +32,7 @@ int ft_printf(const char *format, ...)
         }
         format++;
     }
+    printf("TUT %s", buff_size->p_begin->value);
     va_end (list);
     return (0);
 } 

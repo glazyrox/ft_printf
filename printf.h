@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/29 20:31:06 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/11/30 17:45:36 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 #   include <stdio.h>
 
 #   define SIZE 500
+
+typedef struct sNode{
+    char value[100];
+    struct sNode *next;
+}              tNode;
 
 typedef struct  s_struct
 {
@@ -46,6 +51,8 @@ typedef struct s_buff
     size_t buff_size;
 	size_t size_of_all; // каждый раз после обработки считаем сумму 
     va_list list;
+    tNode *p_begin; // листы для сохранения значений
+    int govno;
 }              t_buff;
 
 int ft_printf(const char *format, ...);
@@ -54,8 +61,9 @@ int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size);
 int	ft_new_atoi(const char *str, int start, int end);
 int ft_width(t_struct *inform, char *format, int stop, int formodifiers, t_buff *buff_size);
 int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size);
-
+void ft_make_arg(t_struct *inform, t_buff *buff_size);
 int ft_value_maker(t_struct *inform, t_buff *buff_size);
 int value_d(va_list list);
+tNode* ft_create_list(int N);
 
 #endif
