@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:12:19 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/30 17:56:49 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/02 15:04:51 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void width_and_precision(t_struct *inform, int len)
 	inform->final_size += 1;
 }
 
-int int_len(long int value, t_struct *inform)
+int int_len(int value, t_struct *inform)
 {
     int i;
 	
@@ -68,7 +68,40 @@ int flag_corrector(t_struct *inform)
 	return (5);
 }
 
-int ft_value_maker(t_struct *inform, t_buff *buff_size) //ренейм
+int va_value(t_struct *inform, va_list list, int i)
+{
+    int len;
+
+    len = 0;
+    if (i == 1)
+    {
+       inform->value_d = va_arg(list, long int);
+		len = int_len((long)inform->value_d, inform);
+    }
+	else if (i == 2)
+    {
+        inform->value_d = va_arg(list, long int);
+		len = int_len((long)inform->value_d, inform);
+    }
+	else if (i == 3)
+    {
+        inform->value_d = va_arg(list, int);
+		len = int_len((short)inform->value_d, inform);
+    }
+	else if (i == 4)
+    {
+        inform->value_d = va_arg(list, int);
+		len = int_len((char)inform->value_d, inform);
+    }
+	if (i == 5)
+    {
+        inform->value_d = va_arg(list, int);
+		len = int_len(inform->value_d, inform);
+    }
+    return (len);
+}
+
+int ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list)
 {
     char *str;
     int len;
@@ -77,15 +110,15 @@ int ft_value_maker(t_struct *inform, t_buff *buff_size) //ренейм
     len = 0;
 	i = flag_corrector(inform);
 	if (i == 1)
-		len = int_len((long)inform->value_d, inform);
+		len = va_value(inform, list, i);
 	else if (i == 2)
-		len = int_len((long)inform->value_d, inform);
+		len = va_value(inform, list, i);
 	else if (i == 3)
-		len = int_len((short)inform->value_d, inform);
+		len = va_value(inform, list, i);
 	else if (i == 4)
-		len = int_len((char)inform->value_d, inform);
+		len = va_value(inform, list, i);
 	if (i == 5)
-		len = int_len(inform->value_d, inform);
+		len = va_value(inform, list, i);
 	width_and_precision(inform, len);
 	buff_size->size_of_all += len;
 	ft_make_arg(inform, buff_size);

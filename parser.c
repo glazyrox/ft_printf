@@ -6,13 +6,13 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/29 20:31:18 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/01 18:41:09 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size)
+int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size, va_list list)
 {
     int i;
 
@@ -41,29 +41,29 @@ int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size)
         }
         i++;
     }
-    ft_value_maker(inform, buff_size);
+    ft_value_maker(inform, buff_size, list);
     return (0); 
 }
 
-int ft_width(t_struct *inform, char *format, int stop, int formodifiers, t_buff *buff_size)
+int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size, va_list list)
 {
     int i;
     
     i = 0;
-    while (i++ < stop)
+    while (i++ < inform->stop)
     {
         if (format[i] >= 49 && format[i] <= 57)
 		{
 			if (format[i - 1]  == '-')
 				inform->widthisneg = 1;
-            inform->width = ft_new_atoi(format, i, stop);
+            inform->width = ft_new_atoi(format, i, inform->stop);
 		}
     }
-    ft_modifiers(format, inform, formodifiers, buff_size);
+    ft_modifiers(format, inform, formodifiers, buff_size, list);
     return (0);
 }
 
-int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size)
+int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list list)
 {
     int i;
     
@@ -74,15 +74,16 @@ int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size)
         {
             inform->zero = 0; // не точно, пока хотя бы так)
             inform->precision = ft_new_atoi(format, i + 1, stop);
-            ft_width(inform, format, i--, stop, buff_size);
+            inform->stop = i - 1;
+            ft_width(inform, format, stop, buff_size, list);
             return (0);
         }
     }
-    ft_width(inform, format, stop, i, buff_size);
+    ft_width(inform, format, i, buff_size, list);
     return (0);
 }
 
-int ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size)
+int ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list list)
 {   
     int i;
     
@@ -104,7 +105,7 @@ int ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size)
         else if (format[i] == 48)
             inform->zero = 1;
     }
-    ft_precision(inform, format, stop, buff_size);
+    ft_precision(inform, format, stop, buff_size, list);
     return (0);
 }
 
@@ -120,9 +121,8 @@ char *ft_type(char *format, va_list list, t_buff *buff_size)
         if (format[i] == 'd' || format[i] == 'i') // отрефактори в функцию, если надо будет(скорее всего надо)
         {
             inform->type = 'd';
-            inform->value_d = value_d(list);
             inform->format = 1;
-            ft_flag(inform, (char *)format, i, buff_size);
+            ft_flag(inform, (char *)format, i, buff_size, list);
             break;       
         }
     }
