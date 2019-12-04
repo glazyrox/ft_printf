@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/01 18:41:09 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:45:48 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size
         if (format[i] >= 49 && format[i] <= 57)
 		{
 			if (format[i - 1]  == '-')
-				inform->widthisneg = 1;
+				inform->widthisneg = 1; // отрицательная ширина
             inform->width = ft_new_atoi(format, i, inform->stop);
 		}
     }
@@ -74,10 +74,11 @@ int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va
         {
             inform->zero = 0; // не точно, пока хотя бы так)
             inform->precision = ft_new_atoi(format, i + 1, stop);
-            inform->stop = i - 1;
+            inform->stop = i;
             ft_width(inform, format, stop, buff_size, list);
             return (0);
         }
+        inform->stop = i;
     }
     ft_width(inform, format, i, buff_size, list);
     return (0);
@@ -99,12 +100,14 @@ int ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list
         else if (format[i] == '+')
            inform->plus = 1; 
         else if (format[i] == '-')
-            inform->plus = 1;   
+            inform->minus = 1;   
         else if (format[i] == 32)
             inform->space = 1;
         else if (format[i] == 48)
             inform->zero = 1;
     }
+    if (inform->plus)
+        inform->space = 0;
     ft_precision(inform, format, stop, buff_size, list);
     return (0);
 }

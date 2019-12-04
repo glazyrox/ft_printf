@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/02 16:42:17 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/04 20:44:41 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct  s_struct
     int l;
     int ll;
     int format;
+    int value_is_neg;
 	size_t final_size; // общий размер строки за одну обработку!
 }               t_struct;
 
@@ -61,10 +62,15 @@ int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va
 int	ft_new_atoi(const char *str, int start, int end);
 int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size, va_list list);
 int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size, va_list list);
-void ft_make_arg(t_struct *inform, t_buff *buff_size);
+void ft_make_arg(t_struct *inform, t_buff *buff_size, int len);
 int ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list);
+char *word_maker(t_struct *inform, char *buffer, int len);
 int va_value(t_struct *inform, va_list list, int i);
 int value_d(va_list list);
 tNode* ft_create_list(int N);
+char		*ft_new_itoa(int n);
+char *ft_spacer(char *s1, char sym, t_struct *inform, int flag, int len);
+char *negative_width(t_struct *inform, char *buffer, int len);
+char *zero_putter(char *str, t_struct *inform, int len, int g);
 
 #endif

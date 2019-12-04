@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:12:19 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/02 15:04:51 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/03 19:35:49 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void width_and_precision(t_struct *inform, int len)
 		inform->final_size = inform->precision;
 	if (inform->final_size < len)
 		inform->final_size = len;
-	inform->final_size += 1;
 }
 
 int int_len(int value, t_struct *inform)
@@ -28,8 +27,11 @@ int int_len(int value, t_struct *inform)
     int i;
 	
     i = 0;
-    if ((long)value < 0)
+    if (value < 0)
+	{
         i++;
+		inform->value_is_neg = 1;
+	}
     else 
     {
         if (inform->plus)
@@ -120,8 +122,8 @@ int ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list)
 	if (i == 5)
 		len = va_value(inform, list, i);
 	width_and_precision(inform, len);
-	buff_size->size_of_all += len;
-	ft_make_arg(inform, buff_size);
+	buff_size->size_of_all += inform->final_size;
+	ft_make_arg(inform, buff_size, len);
     free(inform);
     return (0);
 }

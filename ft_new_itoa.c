@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_new_itoa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/09 13:12:02 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/03 17:04:24 by rgwayne-         ###   ########.fr       */
+/*   Created: 2019/12/03 17:03:29 by rgwayne-          #+#    #+#             */
+/*   Updated: 2019/12/03 17:22:16 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
 static int	ft_len(long f)
 {
@@ -23,10 +23,7 @@ static int	ft_len(long f)
 		return (i);
 	}
 	if (f < 0)
-	{
-		i++;
 		f = f * (-1);
-	}
 	while (f)
 	{
 		f = f / 10;
@@ -35,36 +32,28 @@ static int	ft_len(long f)
 	return (i);
 }
 
-static char	*ft_final(long f)
+char	*ft_final(long f)
 {
 	int		len;
-	int		flg;
 	char	*tmp;
 
 	len = ft_len(f);
-	flg = 0;
-	tmp = (char *)malloc(sizeof(char) * (len + 1));
-	if (!tmp)
-		return (0);
+	if (!(tmp = (char *)malloc(sizeof(char) * (len + 1))))
+        return (0);
 	tmp[len] = '\0';
 	len = len - 1;
 	if (f < 0)
-	{
-		flg = 1;
 		f = f * -1;
-	}
 	while (len >= 0)
 	{
 		tmp[len] = f % 10 + 48;
 		len--;
 		f = f / 10;
 	}
-	if (flg == 1)
-		tmp[0] = '-';
 	return (tmp);
 }
 
-char		*ft_itoa(int n)
+char		*ft_new_itoa(int n)
 {
 	char	*res;
 	long	nbr;
