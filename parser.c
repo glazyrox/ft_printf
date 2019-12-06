@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/03 17:45:48 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/06 20:56:12 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size
 			if (format[i - 1]  == '-')
 				inform->widthisneg = 1; // отрицательная ширина
             inform->width = ft_new_atoi(format, i, inform->stop);
+            if (inform->width > 0)
+                break;
 		}
     }
     ft_modifiers(format, inform, formodifiers, buff_size, list);
@@ -112,7 +114,7 @@ int ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list
     return (0);
 }
 
-char *ft_type(char *format, va_list list, t_buff *buff_size)
+int ft_type(char *format, va_list list, t_buff *buff_size)
 {
     int i;
     t_struct *inform;
@@ -121,13 +123,15 @@ char *ft_type(char *format, va_list list, t_buff *buff_size)
     inform = ft_memalloc(sizeof(t_struct));
     while (format[i++])
     {
-        if (format[i] == 'd' || format[i] == 'i') // отрефактори в функцию, если надо будет(скорее всего надо)
+        if (format[i] == 'd' || format[i] == 'i') // отрефактори в функцию, если надо будет (скорее всего надо)
         {
             inform->type = 'd';
             inform->format = 1;
             ft_flag(inform, (char *)format, i, buff_size, list);
-            break;       
+            if (!(format[i + 1] == '\0'))
+                return (buff_size->struct_pointer);
         }
+        buff_size->struct_pointer++;
     }
-    return (0);
+    return (i - 2);
 }

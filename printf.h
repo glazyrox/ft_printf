@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/04 20:44:41 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/06 20:18:55 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,13 @@ typedef struct s_buff
 	size_t size_of_all; // каждый раз после обработки считаем сумму 
     tNode *p_begin; // листы для сохранения значений
     int govno;
+    int struct_pointer;
 }              t_buff;
 
 int ft_printf(const char *format, ...);
-char *ft_type(char *format, va_list list, t_buff *buff_size);
+int not_arg_searcher(char *format);
+// парсер+-
+int ft_type(char *format, va_list list, t_buff *buff_size);
 int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list list);
 int	ft_new_atoi(const char *str, int start, int end);
 int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size, va_list list);
@@ -66,11 +69,20 @@ void ft_make_arg(t_struct *inform, t_buff *buff_size, int len);
 int ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list);
 char *word_maker(t_struct *inform, char *buffer, int len);
 int va_value(t_struct *inform, va_list list, int i);
-int value_d(va_list list);
 tNode* ft_create_list(int N);
 char		*ft_new_itoa(int n);
-char *ft_spacer(char *s1, char sym, t_struct *inform, int flag, int len);
-char *negative_width(t_struct *inform, char *buffer, int len);
-char *zero_putter(char *str, t_struct *inform, int len, int g);
+// обработка с ширины
+char *ft_spacer_negative(char *s1, char sym, t_struct *inform);
+char *start_by_width(t_struct *inform, char *buffer, int len);
+char *start_by_neg_width(t_struct *inform, char *buffer, int len);
+char *ft_negative_flags(char *str, t_struct *inform);
+char *ft_spacer(char *s1, char sym, t_struct *inform, int len);
+char *ft_flags(char *str, t_struct *inform, int i);
+char *ft_zeroes(char *s1, t_struct *inform, int len);
+// обработка с точности
+char *start_by_prec(t_struct *inform, char *buffer, int len);
+//  обработка с длины
+char *start_by_len(t_struct *inform, char *buffer);
+//
 
 #endif
