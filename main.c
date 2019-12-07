@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:03:43 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/07 20:00:51 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/07 20:11:08 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int ac, char **av)
     int b = -144;
     int c = -1455;
     int d = -130;
-	printf("tut %+10dsalam %+10d%d gogo%-i", b, a, c, d);
-    ft_printf("tut %+10dsalam %+10d%d gogo%-i", b, a, c, d);
+	printf("tut %+10dsalam %+10d%07d gogo%-i", b, a, c, d);
+    ft_printf("tut %+10dsalam %+10d%07d gogo%-i", b, a, c, d);
     return (0);
 }
