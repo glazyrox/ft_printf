@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 16:22:34 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/11/30 16:53:12 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/07 17:13:25 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void print_list(tNode *p_begin)
     tNode *p = p_begin;
     while (p != NULL) {
         //распечатать структуру данных
-        printf("%s \t", p->value);
+        printf("%s", p->value);
         //шагнуть вперед !!!
         p = p->next;
     }

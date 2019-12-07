@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/06 20:56:12 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/07 19:34:19 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,10 @@ int ft_type(char *format, va_list list, t_buff *buff_size)
             inform->format = 1;
             ft_flag(inform, (char *)format, i, buff_size, list);
             if (!(format[i + 1] == '\0'))
-                return (buff_size->struct_pointer);
+                return (i);
+            break;
         }
         buff_size->struct_pointer++;
     }
-    return (i - 2);
+    return (0);
 }

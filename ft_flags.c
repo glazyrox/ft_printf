@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/06 16:29:52 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/07 16:36:33 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ char *ft_zeroes(char *s1, t_struct *inform, int len)
         i++;
     if (inform->value_is_neg)
         len += 1;
-    while (i < inform->width - len)
+    if (inform->zero)
+    {
+        len -= 1;
+    }
+    while (i <= inform->width - len)
         s1[i++] = '0';
 }
 

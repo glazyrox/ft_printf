@@ -6,25 +6,11 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/06 16:28:45 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/07 17:52:05 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-
-// void ft_list_maker(char *buffer, t_struct *inform, t_buff *buff_size) // тут будет буффер
-// {
-// 	int len;
-// 	int len_word;
-
-// 	len = sizeof(buff_size->p_begin->value);
-// 	len_word = ft_strlen(buffer);
-// 	// if (len < len_word)
-// 	// {
-// 	// 	while (len_word > 0)
-// 	// 	ft_strncpy(buff_size->p_begin->value, buffer, len - 1);
-// 	// }	
-// }
 
 char *start_by_neg_width(t_struct *inform, char *buffer, int len) // функция для работы с отрицательной шириной
 {
@@ -117,6 +103,6 @@ void ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
 
 	buffer = value_maker(inform, buffer); // buffer можно вообще не передавать же, отрефакторить
 	str = word_maker(inform, buffer, len);
-	printf("\n%s", str);
+	add_to_list(str, buff_size, inform->final_size);
 	free(buffer);
 }

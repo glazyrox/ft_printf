@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/06 20:18:55 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/07 19:04:18 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 
 #   define SIZE 500
 
-typedef struct sNode{
-    char value[5];
+typedef struct sNode {
+    char value[10000];
     struct sNode *next;
+    int count;
 }              tNode;
 
 typedef struct  s_struct
@@ -50,15 +51,15 @@ typedef struct  s_struct
 
 typedef struct s_buff
 {
-    size_t buff_size;
 	size_t size_of_all; // каждый раз после обработки считаем сумму 
     tNode *p_begin; // листы для сохранения значений
-    int govno;
     int struct_pointer;
+    int flag;
 }              t_buff;
 
 int ft_printf(const char *format, ...);
-int not_arg_searcher(char *format);
+int not_arg_searcher(char *format, t_buff *buff_size);
+int ft_text(char *format, int i, t_buff *buff_size);
 // парсер+-
 int ft_type(char *format, va_list list, t_buff *buff_size);
 int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list list);
@@ -81,8 +82,9 @@ char *ft_flags(char *str, t_struct *inform, int i);
 char *ft_zeroes(char *s1, t_struct *inform, int len);
 // обработка с точности
 char *start_by_prec(t_struct *inform, char *buffer, int len);
-//  обработка с длины
+// обработка с длины
 char *start_by_len(t_struct *inform, char *buffer);
-//
+// буффер
+void add_to_list(char *str, t_buff *buff_size, size_t len);
 
 #endif
