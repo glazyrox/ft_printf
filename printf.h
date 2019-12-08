@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/07 19:04:18 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/08 14:47:20 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #   define SIZE 500
 
 typedef struct sNode {
-    char value[10000];
+    char value[1000];
     struct sNode *next;
     int count;
 }              tNode;
@@ -55,6 +55,7 @@ typedef struct s_buff
     tNode *p_begin; // листы для сохранения значений
     int struct_pointer;
     int flag;
+    int test;
 }              t_buff;
 
 int ft_printf(const char *format, ...);

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/07 19:34:19 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/08 13:29:58 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size
     {
         if (format[i] >= 49 && format[i] <= 57)
 		{
-			if (format[i - 1]  == '-')
+			if (format[i - 1]  == '-'|| (inform->minus && inform->zero))
 				inform->widthisneg = 1; // отрицательная ширина
             inform->width = ft_new_atoi(format, i, inform->stop);
             if (inform->width > 0)

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:12:19 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/06 16:16:54 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/08 14:51:11 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list)
 	if (i == 5)
 		len = va_value(inform, list, i);
 	width_and_precision(inform, len);
-	buff_size->size_of_all += inform->final_size; // скорее всего надо будет перенести в другое место
+	// buff_size->size_of_all += inform->final_size; // скорее всего надо будет перенести в другое место
 	ft_make_arg(inform, buff_size, len);
     free(inform);
     return (0);
