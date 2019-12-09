@@ -6,11 +6,54 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:02:37 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/05 16:15:00 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/09 19:02:08 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+char	*ft_strfromcat(char *s1, const char *s2, size_t len, size_t n)
+{
+	size_t i;
+	size_t g;
+	size_t s;
+
+	s = 0;
+	i = 0;
+	g = n;
+	while (s1[i] != '\0')
+		i++;
+	s1[i] = s2[g];
+	while (s2[g] != '\0' && s < len)
+	{
+		s1[i] = s2[g];
+		i++;
+		g++;
+		s++;
+	}
+	s1[i] = '\0';
+	return (s1);
+}
+
+char	*ft_strfncat(char *s1, const char *s2, size_t n)
+{
+	size_t i;
+	size_t g;
+
+	i = 0;
+	g = 0;
+	while (s1[i] != '\0')
+		i++;
+	s1[i] = s2[g];
+	while (s2[g] != '\0' && g < n)
+	{
+		s1[i] = s2[g];
+		i++;
+		g++;
+	}
+	s1[i] = '\0';
+	return (s1);
+}
 
 int	ft_new_atoi(const char *str, int start, int end)
 {

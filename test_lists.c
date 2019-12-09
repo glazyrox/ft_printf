@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 16:22:34 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/07 17:13:25 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/09 17:53:52 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void print_list(tNode *p_begin)
 {
     tNode *p = p_begin;
-    while (p != NULL) {
+    while (p) {
         //распечатать структуру данных
         printf("%s", p->value);
         //шагнуть вперед !!!
@@ -23,25 +23,37 @@ void print_list(tNode *p_begin)
     }
 }
 
-tNode* ft_create_list(int N)
+tNode* ft_to_the_last(tNode **head)
+{
+    tNode *p = NULL;
+    
+    p = *head;
+    p = p->next;
+    p->next = NULL;
+    return (p);
+}
+
+tNode* ft_create_list(tNode **head)
 {
     int i;
-    tNode *p_begin = NULL;
-    tNode *p = NULL;
-
-    i = 0;
-    p_begin = (tNode *)malloc(sizeof(tNode));
-    p = p_begin;
-    p->next = NULL;
-
-    while (i < N)
+    // tNode *p_begin = NULL;
+    tNode *p;
+    
+    p = NULL;
+    if (!*head)
     {
-        p->next = (tNode *)malloc(sizeof(tNode));
-        //шагнуть вперед !!!
-        p = p->next;
-        //заполнить _новую_ структуру данных
+        *head = (tNode *)malloc(sizeof(tNode));
+        p = *head;
         p->next = NULL;
-        i++;
     }
-    return (p_begin);
+    else
+    {
+        p = *head;
+        while (p->next)
+            p = p->next;
+        p->next = (tNode *)malloc(sizeof(tNode));
+        p = p->next;
+        p->next = NULL;
+    }
+    return (p);
 }

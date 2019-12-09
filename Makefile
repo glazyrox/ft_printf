@@ -6,16 +6,25 @@
 #    By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/22 16:20:25 by rgwayne-          #+#    #+#              #
-#    Updated: 2019/11/26 21:26:58 by rgwayne-         ###   ########.fr        #
+#    Updated: 2019/12/09 20:06:52 by rgwayne-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror
+# FLAGS = -Wall -Wextra -Werror
 
 SRC = 	ft_printf.c \
-		ft_only_one_arg.c
+		parser.c \
+		converser.c \
+		string_maker.c \
+		word_width_maker.c \
+		ft_new_itoa.c \
+		test_lists.c \
+		ft_flags.c \
+		word_prec_maker.c \
+		buffer.c \
+		libft.c
 
 all: $(NAME)
 

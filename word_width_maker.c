@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/08 13:20:14 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/09 19:51:17 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
 
 	buffer = value_maker(inform, buffer); // buffer можно вообще не передавать же, отрефакторить
 	str = word_maker(inform, buffer, len);
-	add_to_list(str, buff_size, inform->final_size);
+	//make_first_list(str, buff_size, inform->final_size + 1);
+	write(1, str, ft_strlen(str));
 	free(buffer);
 }

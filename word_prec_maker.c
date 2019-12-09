@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:10:03 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/08 14:52:57 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/09 19:50:55 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int ft_text(char *format, int i, t_buff *buff_size)
         g++;
     }
     str[g] = '\0';
-    add_to_list(str, buff_size, i + 1);
+    write(1, str, ft_strlen(str));
+    //make_first_list(str, buff_size, g + 1);
     return (0);
 }
 

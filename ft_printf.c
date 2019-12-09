@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:28:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/08 14:50:05 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/09 20:30:22 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int ft_printf(const char *format, ...)
 
     i = 0;
     buff_size = ft_memalloc(sizeof(t_buff));
+    buff_size->size_lists = SIZE;
     buff_size->flag = 1;
-    printf("\n"); //
     while (*format)
     {
         if (*format == '%')
@@ -31,7 +31,7 @@ int ft_printf(const char *format, ...)
             format += not_arg_searcher((char *)format, buff_size);
         format++;
     }
-    printf("\n%s", buff_size->p_begin->value);
+    print_list(buff_size->p_head);
     va_end (list);
     return (0);
 } 
