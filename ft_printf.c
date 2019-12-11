@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:28:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/09 20:30:22 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/11 18:29:38 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int ft_printf(const char *format, ...)
             format += not_arg_searcher((char *)format, buff_size);
         format++;
     }
-    print_list(buff_size->p_head);
     va_end (list);
-    return (0);
+    return (buff_size->size_of_all);
 } 

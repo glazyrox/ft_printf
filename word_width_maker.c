@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/09 19:51:17 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/11 20:20:36 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char *start_by_neg_width(t_struct *inform, char *buffer, int len) // функц�
 		while (i < inform->precision - (len)) // т.к. на минус забиваем из-за конца строки
 			str[i++] = 48;
 	}
-	ft_strcat(str, buffer);
+	ft_strcat(str, buffer, inform->dack_prec);
 	ft_spacer_negative(str, ' ', inform);
 	return (str);
 }
@@ -59,7 +59,7 @@ char *start_by_width(t_struct *inform, char *buffer, int len) // функция 
 				g++;
 			}
 		}
-		ft_strcat(str, buffer);
+		ft_strcat(str, buffer, inform->dack_prec);
 	}
 	return (str);
 }
@@ -83,16 +83,10 @@ char *value_maker(t_struct *inform, char *buffer) // тут вписывать �
 {
 	char *str;
 	
-	if (inform->h)
-		str = ft_new_itoa((short)inform->value_d);
-	else if (inform->hh)
-		str = ft_new_itoa((char)inform->value_d);
-	else if (inform->l)
-		str = ft_new_itoa((long)inform->value_d);
-	else if (inform->ll)
-		str = ft_new_itoa((long long)inform->value_d);
-	else
-		str = ft_new_itoa(inform->value_d);
+	if (inform->type == 'd')
+		str = d_value_maker(inform, buffer);
+	else if (inform->type == 'u')
+		str = u_value_maker(inform, buffer);
 	return (str);
 }
 
@@ -103,7 +97,6 @@ void ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
 
 	buffer = value_maker(inform, buffer); // buffer можно вообще не передавать же, отрефакторить
 	str = word_maker(inform, buffer, len);
-	//make_first_list(str, buff_size, inform->final_size + 1);
-	write(1, str, ft_strlen(str));
+	write(1, str, inform->final_size);
 	free(buffer);
 }

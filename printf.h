@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/09 20:28:50 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/11 20:22:31 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #   define PRINTF_H
 
 #   include <stdarg.h>
-#   include "libft/includes/libft.h"
 #   include <stdlib.h>
 #   include <stdio.h>
 
@@ -39,13 +38,13 @@ typedef struct  s_struct
     int width;
 	int widthisneg; // ширина отрицательная
     int precision; // точность
-    long long value_d; // значение из стэка для d/i
+    unsigned long int value_d; // значение из стэка для d/i
     int h;
     int hh;
     int l;
     int ll;
-    int format;
     int value_is_neg;
+    int dack_prec;
 	size_t final_size; // общий размер строки за одну обработку!
 }               t_struct;
 
@@ -69,7 +68,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 // парсер+-
 void	*ft_memalloc(size_t size);
-char	*ft_strcat(char *s1, const char *s2);
+char	*ft_strcat(char *s1, const char *s2, int dack);
 //
 int ft_type(char *format, va_list list, t_buff *buff_size);
 int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list list);
@@ -78,11 +77,21 @@ int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size
 int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size, va_list list);
 void ft_make_arg(t_struct *inform, t_buff *buff_size, int len);
 int ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list);
+int     ft_value_d(t_struct *inform, va_list list, int i); // для di
+int ft_value_u(t_struct *inform, va_list list, int i); // для u
+int int_len(long int value, t_struct *inform); // для diu
+int ul_int_len(unsigned long int value, t_struct *inform); // для u
+char *d_value_maker(t_struct *inform, char *buffer); // для di
+char *u_value_maker(t_struct *inform, char *buffer); // для u
 char *word_maker(t_struct *inform, char *buffer, int len);
 int va_value(t_struct *inform, va_list list, int i);
 tNode *ft_create_list(tNode **head);
 void print_list(tNode *p_begin);
-char		*ft_new_itoa(int n);
+char		*ft_new_itoa(long int n);
+// long itoa
+char		*ft_long_itoa(unsigned long int n);
+char	*ft_long_final(unsigned long int f);
+static int	ft_long_len(unsigned long int f);
 // обработка с ширины
 char *ft_spacer_negative(char *s1, char sym, t_struct *inform);
 char *start_by_width(t_struct *inform, char *buffer, int len);
@@ -100,4 +109,5 @@ void make_first_list(char *str, t_buff *buff_size, size_t len);
 char	*ft_strfncat(char *s1, const char *s2, size_t n);
 tNode* ft_to_the_last(tNode **head);
 char	*ft_strfromcat(char *s1, const char *s2, size_t len, size_t n);
+
 #endif

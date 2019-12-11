@@ -6,13 +6,13 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 15:41:57 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/08 12:40:05 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:34:16 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+char	*ft_strcat(char *s1, const char *s2, char dack)
 {
 	size_t i;
 	size_t g;

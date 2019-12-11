@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/08 13:25:54 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/11 15:28:20 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ char *ft_zeroes(char *s1, t_struct *inform, int len)
     i = 0;
     if (ft_flags(s1, inform, i))
         i++;
-    if (inform->value_is_neg)
-        len += 1;
-    while (i < inform->width - len)
+    else
+        len++;
+    // if (inform->value_is_neg)
+    //     len += 1;
+    while (i <= inform->width - len)
     {
         s1[i++] = '0';
     }
@@ -32,6 +34,8 @@ char *ft_flags(char *str, t_struct *inform, int i)
 {
     if (inform->value_is_neg)
     {
+        if (inform->value_is_neg && inform->precision && !inform->zero)
+            inform->final_size += 1;
 		str[i] = '-';
         return (str);
     } 
@@ -42,8 +46,11 @@ char *ft_flags(char *str, t_struct *inform, int i)
     }
     else if (!inform->plus && !inform->value_is_neg && inform->space)
     {
-        str[i] = ' ';
-        return (str);
+        if (!inform->width - i == i + inform->space)
+        {
+            str[i] = ' ';
+            return (str);
+        }
     }
     return (0);
 }
@@ -66,6 +73,8 @@ char *ft_spacer(char *s1, char sym, t_struct *inform, int len)
     {
         if (!inform->zero)
         {
+            if ((inform->value_is_neg && inform->zero) || inform->plus)
+                len++;
             while (i < inform->width - len)
                 s1[i++] = sym;
             ft_flags(s1, inform, i);

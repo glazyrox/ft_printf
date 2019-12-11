@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/08 13:29:58 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/11 19:19:06 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,15 @@ int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size
     {
         if (format[i] >= 49 && format[i] <= 57)
 		{
-			if (format[i - 1]  == '-'|| (inform->minus && inform->zero))
+			if (format[i - 1]  == '-'|| (inform->minus && inform->zero) || (inform->minus && inform->plus))
 				inform->widthisneg = 1; // отрицательная ширина
             inform->width = ft_new_atoi(format, i, inform->stop);
             if (inform->width > 0)
                 break;
 		}
     }
+    if (inform->precision > inform->width)
+        inform->zero = 0;
     ft_modifiers(format, inform, formodifiers, buff_size, list);
     return (0);
 }
@@ -74,8 +76,9 @@ int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va
     {
         if (format[i] == '.')
         {
-            inform->zero = 0; // не точно, пока хотя бы так)
             inform->precision = ft_new_atoi(format, i + 1, stop);
+            if (inform->precision == 0)
+                inform->dack_prec = 2;
             inform->stop = i;
             ft_width(inform, format, stop, buff_size, list);
             return (0);
@@ -99,11 +102,11 @@ int ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list
             if (inform->stopflags == 1) // лол
                 break;
         }
-        else if (format[i] == '+')
+        else if (format[i] == '+' && inform->type != 'u')
            inform->plus = 1; 
         else if (format[i] == '-')
             inform->minus = 1;   
-        else if (format[i] == 32)
+        else if (format[i] == 32 && inform->type != 'u')
             inform->space = 1;
         else if (format[i] == 48)
             inform->zero = 1;
@@ -123,13 +126,17 @@ int ft_type(char *format, va_list list, t_buff *buff_size)
     inform = ft_memalloc(sizeof(t_struct));
     while (format[i++])
     {
-        if (format[i] == 'd' || format[i] == 'i') // отрефактори в функцию, если надо будет (скорее всего надо)
+        if (format[i] == 'd' || format[i] == 'i' || format[i] == 'u') // отрефактори в функцию, если надо будет (скорее всего надо)
         {
             inform->type = 'd';
-            inform->format = 1;
+            if (format[i] == 'u')
+                inform-> type = 'u';
             ft_flag(inform, (char *)format, i, buff_size, list);
             if (!(format[i + 1] == '\0'))
+            {
+                buff_size->test = 1;
                 return (i);
+            }
             break;
         }
         buff_size->struct_pointer++;

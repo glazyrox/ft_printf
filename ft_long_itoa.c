@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_new_itoa.c                                      :+:      :+:    :+:   */
+/*   ft_long_itoa.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 17:03:29 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 20:08:19 by rgwayne-         ###   ########.fr       */
+/*   Created: 2019/12/11 20:02:54 by rgwayne-          #+#    #+#             */
+/*   Updated: 2019/12/11 20:09:05 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static int	ft_len(long f)
+static int	ft_long_len(unsigned long int f)
 {
 	int		i;
 
@@ -22,8 +22,6 @@ static int	ft_len(long f)
 		i = 1;
 		return (i);
 	}
-	if (f < 0)
-		f *= (-1);
 	while (f)
 	{
 		f = f / 10;
@@ -32,40 +30,30 @@ static int	ft_len(long f)
 	return (i);
 }
 
-char	*ft_final(long int f)
+char	*ft_long_final(unsigned long int f)
 {
 	int		len;
 	char	*tmp;
 
-	len = ft_len(f);
+	len = ft_long_len(f);
 	if (!(tmp = (char *)malloc(sizeof(char) * (len + 1))))
         return (0);
 	tmp[len] = '\0';
 	len = len - 1;
-	if (f < 0)
-		f = f * -1;
 	while (len >= 0)
 	{
-		if (f < 0)
-		{
-			tmp[len--] = f % 10 * (-1) + 48;
-			f = f / 10;
-		}
-		else
-		{
-			tmp[len--] = f % 10 + 48;
-			f = f / 10;
-		}
+		tmp[len--] = f % 10 + 48;
+		f = f / 10;
 	}
 	return (tmp);
 }
 
-char		*ft_new_itoa(long int n)
+char		*ft_long_itoa(unsigned long int n)
 {
 	char	*res;
 	long	nbr;
 
 	nbr = n;
-	res = ft_final(nbr);
+	res = ft_long_final(nbr);
 	return (res);
 }

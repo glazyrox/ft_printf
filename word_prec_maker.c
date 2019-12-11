@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:10:03 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/09 19:50:55 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/11 18:29:32 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int ft_text(char *format, int i, t_buff *buff_size)
     }
     str[g] = '\0';
     write(1, str, ft_strlen(str));
-    //make_first_list(str, buff_size, g + 1);
+    buff_size->size_of_all += g;
     return (0);
 }
 
@@ -37,11 +37,17 @@ int not_arg_searcher(char *format, t_buff *buff_size)
     i = 0;
     while (format[i + 1] != '%')
     {
+        if (buff_size->test)
+        {
+            ft_text(format, i, buff_size);
+            return (i);
+        }
         if (format[i + 1] == '\0')
             return (i);
         i++;
     }
     ft_text(format, i, buff_size);
+    buff_size->test = 0;
     return (i);
 }
 // выше функции для текста
@@ -51,7 +57,7 @@ char *start_by_len(t_struct *inform, char *buffer)
     
     str = ft_memalloc(inform->final_size + 1);
     ft_flags(str, inform, 0);
-    ft_strcat(str, buffer);
+    ft_strcat(str, buffer, inform->dack_prec);
     return (str);
 }
 
@@ -74,6 +80,6 @@ char *start_by_prec(t_struct *inform, char *buffer, int len)
         str[i++] = 48;
         g++;
     }
-    ft_strcat(str, buffer);
+    ft_strcat(str, buffer, inform->dack_prec);
     return (str);
 }
