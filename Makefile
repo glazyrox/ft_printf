@@ -6,7 +6,7 @@
 #    By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/22 16:20:25 by rgwayne-          #+#    #+#              #
-#    Updated: 2019/12/11 20:21:25 by rgwayne-         ###   ########.fr        #
+#    Updated: 2019/12/12 19:07:58 by rgwayne-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC = 	ft_printf.c \
 		libft.c \
 		ft_for_int.c \
 		ft_long_itoa.c \
-		ft_for_int2.c
+		ft_for_int2.c \
+		ft_for_octal.c
 
 all: $(NAME)
 

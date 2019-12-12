@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 20:22:31 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/12 19:17:07 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 // парсер+-
 void	*ft_memalloc(size_t size);
-char	*ft_strcat(char *s1, const char *s2, int dack);
+char	*ft_strcat(char *s1, const char *s2, t_struct *inform);
 //
 int ft_type(char *format, va_list list, t_buff *buff_size);
 int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list list);
@@ -83,10 +83,13 @@ int int_len(long int value, t_struct *inform); // для diu
 int ul_int_len(unsigned long int value, t_struct *inform); // для u
 char *d_value_maker(t_struct *inform, char *buffer); // для di
 char *u_value_maker(t_struct *inform, char *buffer); // для u
+char *o_value_maker(t_struct *inform, char *buffer);
+int ft_value_o(t_struct *inform, va_list list, int i); // для o
 char *word_maker(t_struct *inform, char *buffer, int len);
 int va_value(t_struct *inform, va_list list, int i);
 tNode *ft_create_list(tNode **head);
 void print_list(tNode *p_begin);
+void ft_octal(t_struct *inform); // перевод в восьмиричную 
 char		*ft_new_itoa(long int n);
 // long itoa
 char		*ft_long_itoa(unsigned long int n);

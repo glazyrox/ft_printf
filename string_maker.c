@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:12:19 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 20:00:01 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/12 17:10:32 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int va_value(t_struct *inform, va_list list, int i)
 		len = ft_value_d(inform, list, i);
 	else if (inform->type == 'u')
 		len = ft_value_u(inform, list, i);
+	else if (inform->type == 'o')
+		len = ft_value_o(inform, list, i);
     return (len);
 }
 

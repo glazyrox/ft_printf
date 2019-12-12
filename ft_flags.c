@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 15:28:20 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/12 20:27:01 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ char *ft_flags(char *str, t_struct *inform, int i)
             str[i] = ' ';
             return (str);
         }
+    }
+    else if (!inform->plus && !inform->value_is_neg && inform->sharp)
+    {
+        str[i] = 48;
+        return (str);
     }
     return (0);
 }
@@ -115,6 +120,11 @@ char *ft_negative_flags(char *str, t_struct *inform)
     else if (!inform->plus && !inform->value_is_neg && inform->space)
     {
         str[0] = ' ';
+        return (str);
+    }
+    else if (inform->type == 'o' && inform->sharp)
+    {
+        str[0] = '0';
         return (str);
     }
     return (0);

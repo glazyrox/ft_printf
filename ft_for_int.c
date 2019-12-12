@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:52:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 20:13:24 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/12 20:32:20 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int int_len(long int value, t_struct *inform)
 	{
 		if (inform->plus && !inform->value_is_neg)
 			i++;
-		if (!inform->dack_prec)
+		if (!inform->dack_prec || inform->sharp)
 			i++;
 		return(i);
 	}
@@ -60,7 +60,7 @@ int int_len(long int value, t_struct *inform)
 	}
     else 
     {
-		if (inform->space && !inform->plus)
+		if ((inform->space && !inform->plus) || inform->sharp)
 			i++;
         if (inform->plus)
             i++;

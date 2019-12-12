@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 20:04:09 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 16:17:22 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/12 20:43:51 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*ft_memalloc(size_t size)
 		return (NULL);
 }
 
-char	*ft_strcat(char *s1, const char *s2, int dack)
+char	*ft_strcat(char *s1, const char *s2, t_struct *inform)
 {
 	size_t i;
 	size_t g;
@@ -60,17 +60,15 @@ char	*ft_strcat(char *s1, const char *s2, int dack)
 		i++;
 	while (s2[g] != '\0')
 	{
-		if (s2[g] == 48 && dack == 1)
+		if (s2[g] == 48 && inform->dack_prec == 1 && inform->sharp == 0)
 		{
 			s1[i] = ' ';
 			g++;
 			i++;
 		}
 		s1[i] = s2[g];
-		if (s2[g] == 48 && dack == 2)
-		{
+		if (s2[g] == 48 && inform->dack_prec == 2 && inform->sharp == 0)
 			s1[i] = ' ';
-		}
 		g++;
 		i++;
 	}

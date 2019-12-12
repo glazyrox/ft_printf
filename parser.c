@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 19:19:06 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/12 20:11:19 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size
 		{
 			if (format[i - 1]  == '-'|| (inform->minus && inform->zero) || (inform->minus && inform->plus))
 				inform->widthisneg = 1; // отрицательная ширина
+            if (inform->type == 'o' && inform->minus)
+                inform->widthisneg = 1;
             inform->width = ft_new_atoi(format, i, inform->stop);
             if (inform->width > 0)
                 break;
@@ -110,6 +112,8 @@ int ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list
             inform->space = 1;
         else if (format[i] == 48)
             inform->zero = 1;
+        else if (format[i] == 35 && inform->type != 'd')
+            inform->sharp = 1;
     }
     if (inform->plus)
         inform->space = 0;
@@ -126,11 +130,13 @@ int ft_type(char *format, va_list list, t_buff *buff_size)
     inform = ft_memalloc(sizeof(t_struct));
     while (format[i++])
     {
-        if (format[i] == 'd' || format[i] == 'i' || format[i] == 'u') // отрефактори в функцию, если надо будет (скорее всего надо)
+        if (format[i] == 'd' || format[i] == 'i' || format[i] == 'u' || format[i] == 'o') // отрефактори в функцию, если надо будет (скорее всего надо)
         {
             inform->type = 'd';
             if (format[i] == 'u')
-                inform-> type = 'u';
+                inform->type = 'u';
+            else if (format[i] == 'o')
+                inform->type = 'o';
             ft_flag(inform, (char *)format, i, buff_size, list);
             if (!(format[i + 1] == '\0'))
             {

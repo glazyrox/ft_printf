@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:10:03 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 18:29:32 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/12 19:18:20 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char *start_by_len(t_struct *inform, char *buffer)
     
     str = ft_memalloc(inform->final_size + 1);
     ft_flags(str, inform, 0);
-    ft_strcat(str, buffer, inform->dack_prec);
+    ft_strcat(str, buffer, inform);
     return (str);
 }
 
@@ -80,6 +80,6 @@ char *start_by_prec(t_struct *inform, char *buffer, int len)
         str[i++] = 48;
         g++;
     }
-    ft_strcat(str, buffer, inform->dack_prec);
+    ft_strcat(str, buffer, inform);
     return (str);
 }
