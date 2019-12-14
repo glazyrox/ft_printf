@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/12 19:17:07 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/14 19:37:14 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,12 @@ char *start_by_width(t_struct *inform, char *buffer, int len);
 char *start_by_neg_width(t_struct *inform, char *buffer, int len);
 char *ft_negative_flags(char *str, t_struct *inform);
 char *ft_spacer(char *s1, char sym, t_struct *inform, int len);
-char *ft_flags(char *str, t_struct *inform, int i);
+char *ft_flags(char *str, t_struct *inform, int i, int len);
 char *ft_zeroes(char *s1, t_struct *inform, int len);
 // обработка с точности
 char *start_by_prec(t_struct *inform, char *buffer, int len);
 // обработка с длины
-char *start_by_len(t_struct *inform, char *buffer);
+char *start_by_len(t_struct *inform, char *buffer, int len);
 // буффер
 void make_first_list(char *str, t_buff *buff_size, size_t len);
 char	*ft_strfncat(char *s1, const char *s2, size_t n);

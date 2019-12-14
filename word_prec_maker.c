@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:10:03 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/12 19:18:20 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/14 19:56:06 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int ft_text(char *format, int i, t_buff *buff_size)
     str[g] = '\0';
     write(1, str, ft_strlen(str));
     buff_size->size_of_all += g;
+    free(str);
     return (0);
 }
 
@@ -51,12 +52,12 @@ int not_arg_searcher(char *format, t_buff *buff_size)
     return (i);
 }
 // выше функции для текста
-char *start_by_len(t_struct *inform, char *buffer)
+char *start_by_len(t_struct *inform, char *buffer, int len)
 {
     char *str;
     
     str = ft_memalloc(inform->final_size + 1);
-    ft_flags(str, inform, 0);
+    ft_flags(str, inform, 0, len);
     ft_strcat(str, buffer, inform);
     return (str);
 }
@@ -70,7 +71,7 @@ char *start_by_prec(t_struct *inform, char *buffer, int len)
 	g = 0;
 	i = 0;
     str = ft_memalloc(inform->final_size + 1);
-    if(ft_flags(str, inform, i))
+    if(ft_flags(str, inform, i, len))
     {
         i++;
         len--;

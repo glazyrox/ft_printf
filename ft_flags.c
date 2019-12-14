@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/12 20:27:01 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/14 20:29:55 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char *ft_zeroes(char *s1, t_struct *inform, int len)
     int i;
 
     i = 0;
-    if (ft_flags(s1, inform, i))
+    if (ft_flags(s1, inform, i, len))
         i++;
     else
         len++;
@@ -30,27 +30,30 @@ char *ft_zeroes(char *s1, t_struct *inform, int len)
     return (s1);
 }
 
-char *ft_flags(char *str, t_struct *inform, int i)
+char *ft_flags(char *str, t_struct *inform, int i, int len)
 {
     if (inform->value_is_neg)
     {
-        if (inform->value_is_neg && inform->precision && !inform->zero)
+        if (inform->precision > len && !inform->zero && inform->precision > inform->width)
             inform->final_size += 1;
 		str[i] = '-';
         return (str);
     } 
     else if (inform->plus && !inform->value_is_neg)
     {
+        if (inform->precision > len && inform->precision > inform->width)
+            inform->final_size += 1;
         str[i] = '+';
         return (str);
     }
     else if (!inform->plus && !inform->value_is_neg && inform->space)
     {
-        if (!inform->width - i == i + inform->space)
-        {
-            str[i] = ' ';
-            return (str);
-        }
+        if (inform->precision > inform->width && inform->precision > len)
+            inform->final_size += 1;
+        else if (inform->value_d == 0 && !inform->width)
+            inform->final_size += 1;
+        str[i] = ' ';
+        return (str);
     }
     else if (!inform->plus && !inform->value_is_neg && inform->sharp)
     {
@@ -68,21 +71,21 @@ char *ft_spacer(char *s1, char sym, t_struct *inform, int len)
     if (inform->precision > len)
     {
         while (i < inform->width - inform->precision)
-        {
             s1[i++] = sym;
-        }
-        if (!ft_flags(s1, inform, i - 1))
+        if (!ft_flags(s1, inform, i - 1, len))
             return (1);
     }
     else if (inform->width > len)
     {
         if (!inform->zero)
         {
-            if ((inform->value_is_neg && inform->zero) || inform->plus)
+            if (inform->value_is_neg && inform->zero)
                 len++;
             while (i < inform->width - len)
                 s1[i++] = sym;
-            ft_flags(s1, inform, i);
+            if (inform->width - len - inform->space == 1 && inform->value_d == 0)
+                inform->space = 0;
+            ft_flags(s1, inform, i, len);
         }
         else
             return (ft_zeroes(s1, inform, len));

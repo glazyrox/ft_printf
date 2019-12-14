@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/12 19:17:38 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/14 19:19:18 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char *start_by_neg_width(t_struct *inform, char *buffer, int len) // функц�
 		i++;
 		len -= 2;
 	}
+	if (len < 0)
+		len = 0;
 	if (inform->precision > len)
 	{
 		while (i < inform->precision - (len)) // т.к. на минус забиваем из-за конца строки
@@ -75,7 +77,7 @@ char *word_maker(t_struct *inform, char *buffer, int len) // тут разбив
 	else if (inform->precision >= inform->width && inform->precision > len)
 		str = start_by_prec(inform, buffer, len); // по точности
 	else if (inform->precision <= len && inform->width <= len)
-		str = start_by_len(inform, buffer);
+		str = start_by_len(inform, buffer, len);
 	return (str);
 }
 
