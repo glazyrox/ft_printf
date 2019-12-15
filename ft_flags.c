@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/14 20:29:55 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/15 20:45:10 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char *ft_zeroes(char *s1, t_struct *inform, int len)
 
 char *ft_flags(char *str, t_struct *inform, int i, int len)
 {
-    if (inform->value_is_neg)
+    if (inform->value_is_neg && (inform->type != 'u'))
     {
         if (inform->precision > len && !inform->zero && inform->precision > inform->width)
             inform->final_size += 1;
@@ -57,6 +57,8 @@ char *ft_flags(char *str, t_struct *inform, int i, int len)
     }
     else if (!inform->plus && !inform->value_is_neg && inform->sharp)
     {
+        if (inform->precision > len && !inform->widthisneg)
+            return (str);
         str[i] = 48;
         return (str);
     }
@@ -79,8 +81,10 @@ char *ft_spacer(char *s1, char sym, t_struct *inform, int len)
     {
         if (!inform->zero)
         {
-            if (inform->value_is_neg && inform->zero)
+            if ((inform->value_is_neg && inform->zero) || (inform->value_is_neg && inform->width - len == 1)) // 
                 len++;
+            if (inform->width - len == len && (inform->plus || inform->zero || inform->minus || inform->space))
+                len++;    
             while (i < inform->width - len)
                 s1[i++] = sym;
             if (inform->width - len - inform->space == 1 && inform->value_d == 0)
@@ -125,7 +129,7 @@ char *ft_negative_flags(char *str, t_struct *inform)
         str[0] = ' ';
         return (str);
     }
-    else if (inform->type == 'o' && inform->sharp)
+    else if (inform->type == 'o' && inform->sharp && !inform->dack_prec)
     {
         str[0] = '0';
         return (str);

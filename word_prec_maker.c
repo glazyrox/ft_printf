@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:10:03 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/14 19:56:06 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/15 18:51:43 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char *start_by_prec(t_struct *inform, char *buffer, int len)
     {
         i++;
         len--;
+        if (inform->type == 'o')
+            len++;
     }
     while (g < inform->precision - len)
     {

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:02:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 20:09:05 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/15 15:50:19 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ char	*ft_long_final(unsigned long int f)
 }
 
 char		*ft_long_itoa(unsigned long int n)
+{
+	char	*res;
+	long	nbr;
+
+	nbr = n;
+	res = ft_long_final(nbr);
+	return (res);
+}
+
+char		*ft_short_itoa(unsigned short int n)
 {
 	char	*res;
 	long	nbr;

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/14 19:19:18 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/15 20:49:22 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ char *start_by_neg_width(t_struct *inform, char *buffer, int len) // функц�
 	{
 		i++;
 		len -= 2;
+		if (inform->type == 'o')
+			len += 1;
 	}
+	if (len < 0 && inform->type == 'o')
+		len *= -1;
 	if (len < 0)
 		len = 0;
 	if (inform->precision > len)

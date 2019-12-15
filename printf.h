@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/14 19:37:14 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/15 15:59:04 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*ft_strcat(char *s1, const char *s2, t_struct *inform);
 int ft_type(char *format, va_list list, t_buff *buff_size);
 int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list list);
 int	ft_new_atoi(const char *str, int start, int end);
+char		*ft_short_itoa(unsigned short int n);
 int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size, va_list list);
 int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size, va_list list);
 void ft_make_arg(t_struct *inform, t_buff *buff_size, int len);
@@ -81,6 +82,7 @@ int     ft_value_d(t_struct *inform, va_list list, int i); // для di
 int ft_value_u(t_struct *inform, va_list list, int i); // для u
 int int_len(long int value, t_struct *inform); // для diu
 int ul_int_len(unsigned long int value, t_struct *inform); // для u
+int us_int_len(unsigned short int value, t_struct *inform); // for short u
 char *d_value_maker(t_struct *inform, char *buffer); // для di
 char *u_value_maker(t_struct *inform, char *buffer); // для u
 char *o_value_maker(t_struct *inform, char *buffer);

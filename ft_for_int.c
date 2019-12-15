@@ -6,11 +6,39 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:52:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/14 17:34:13 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/15 20:31:44 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+int us_int_len(unsigned short int value, t_struct *inform)
+{
+    int i;
+	
+    i = 0;
+	if (value == 0)
+	{
+		if (inform->plus && !inform->value_is_neg)
+			i++;
+		if (!inform->dack_prec)
+			i++;
+		return(i);
+	}
+    else 
+    {
+		if (inform->space && !inform->plus)
+			i++;
+        if (inform->plus)
+            i++;
+    }
+    while (value != 0)
+    {
+        value /= 10;
+        i++;
+    }
+    return(i);
+}
 
 int ul_int_len(unsigned long int value, t_struct *inform)
 {
@@ -29,7 +57,7 @@ int ul_int_len(unsigned long int value, t_struct *inform)
     {
 		if (inform->space && !inform->plus)
 			i++;
-        if (inform->plus)
+        if (inform->plus || inform->sharp)
             i++;
     }
     while (value != 0)
@@ -80,7 +108,7 @@ int ft_value_u(t_struct *inform, va_list list, int i)
     if (i == 1)
     {
     	inform->value_d = va_arg(list, unsigned long);
-		len = int_len(inform->value_d, inform);
+		len = ul_int_len(inform->value_d, inform);
     }
 	else if (i == 2)
     {
@@ -90,12 +118,12 @@ int ft_value_u(t_struct *inform, va_list list, int i)
 	else if (i == 3)
     {
         inform->value_d = va_arg(list, unsigned int);
-		len = int_len((short)inform->value_d, inform);
+		len = us_int_len((short)inform->value_d, inform);
     }
 	else if (i == 4)
     {
         inform->value_d = va_arg(list, unsigned int);
-		len = int_len((char)inform->value_d, inform);
+		len = us_int_len((unsigned char)inform->value_d, inform);
     }
 	if (i == 5)
     {

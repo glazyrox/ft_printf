@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/14 20:30:08 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/15 20:19:37 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va
             inform->precision = ft_new_atoi(format, i + 1, stop);
             if (inform->precision == 0)
                 inform->dack_prec = 2;
-            else
-                inform->zero = 0; 
+            inform->zero = 0;
             inform->stop = i;
             ft_width(inform, format, stop, buff_size, list);
             return (0);
