@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/15 15:59:04 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/16 19:54:28 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,12 @@ tNode *ft_create_list(tNode **head);
 void print_list(tNode *p_begin);
 void ft_octal(t_struct *inform); // перевод в восьмиричную 
 char		*ft_new_itoa(long int n);
-// long itoa
+// всякие itoa
 char		*ft_long_itoa(unsigned long int n);
 char	*ft_long_final(unsigned long int f);
+char		*ft_oct_itoa(long n);
 static int	ft_long_len(unsigned long int f);
+char *ft_hexer(t_struct *inform);
 // обработка с ширины
 char *ft_spacer_negative(char *s1, char sym, t_struct *inform);
 char *start_by_width(t_struct *inform, char *buffer, int len);

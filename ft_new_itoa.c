@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 17:03:29 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 20:08:19 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:00:34 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,16 @@ char		*ft_new_itoa(long int n)
 {
 	char	*res;
 	long	nbr;
+
+	nbr = n;
+	res = ft_final(nbr);
+	return (res);
+}
+
+char		*ft_oct_itoa(long int n)
+{
+	char	*res;
+	long int	nbr;
 
 	nbr = n;
 	res = ft_final(nbr);

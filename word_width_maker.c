@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/15 20:49:22 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/16 18:17:43 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char *start_by_neg_width(t_struct *inform, char *buffer, int len) // функц�
 	if (inform->precision > len)
 	{
 		while (i < inform->precision - (len)) // т.к. на минус забиваем из-за конца строки
-			str[i++] = 48;
+			str[i++] = '0';
 	}
 	ft_strcat(str, buffer, inform);
 	ft_spacer_negative(str, ' ', inform);

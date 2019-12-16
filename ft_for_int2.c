@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:14:59 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/15 16:00:48 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:00:17 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ char *o_value_maker(t_struct *inform, char *buffer)
 	char *str;
     
     if (inform->h)
-		str = ft_new_itoa((short)inform->value_d);
+		str = ft_oct_itoa(inform->value_d);
 	else if (inform->hh)
-		str = ft_new_itoa((char)inform->value_d);
+		str = ft_oct_itoa(inform->value_d);
 	else if (inform->l)
 		str = ft_long_itoa((long)inform->value_d);
 	else if (inform->ll)

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/15 20:45:10 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/16 18:45:35 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char *ft_zeroes(char *s1, t_struct *inform, int len)
 
 char *ft_flags(char *str, t_struct *inform, int i, int len)
 {
-    if (inform->value_is_neg && (inform->type != 'u'))
+    if (inform->value_is_neg && (inform->type != 'u' && inform->type != 'o'))
     {
         if (inform->precision > len && !inform->zero && inform->precision > inform->width)
             inform->final_size += 1;
@@ -57,7 +57,7 @@ char *ft_flags(char *str, t_struct *inform, int i, int len)
     }
     else if (!inform->plus && !inform->value_is_neg && inform->sharp)
     {
-        if (inform->precision > len && !inform->widthisneg)
+        if (inform->precision > len && !inform->widthisneg && inform->width != 0 && inform->width > inform->precision) // govno
             return (str);
         str[i] = 48;
         return (str);
@@ -131,6 +131,8 @@ char *ft_negative_flags(char *str, t_struct *inform)
     }
     else if (inform->type == 'o' && inform->sharp && !inform->dack_prec)
     {
+        if (inform->value_d == 0 )
+            return(0);
         str[0] = '0';
         return (str);
     }

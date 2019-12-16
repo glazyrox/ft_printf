@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 16:56:48 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/12 19:50:54 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/16 19:45:18 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void ft_octal(t_struct *inform)
 {
-    unsigned int nbr;
-    unsigned int rev_nbr;
-    unsigned int test;
+    unsigned long int nbr;
+    unsigned long int rev_nbr;
+    unsigned long int test;
 
     test = inform->value_d;
     nbr = 0;
@@ -58,13 +58,13 @@ int ft_value_o(t_struct *inform, va_list list, int i)
     {
         inform->value_d = va_arg(list, unsigned int);
         ft_octal(inform);
-		len = int_len((short)inform->value_d, inform);
+		len = ul_int_len((short)inform->value_d, inform);
     }
 	else if (i == 4)
     {
         inform->value_d = va_arg(list, unsigned int);
         ft_octal(inform);
-		len = int_len((char)inform->value_d, inform);
+		len = ul_int_len((char)inform->value_d, inform);
     }
 	if (i == 5)
     {

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:52:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/15 20:31:44 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/16 14:37:28 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int ul_int_len(unsigned long int value, t_struct *inform)
     int i;
 	
     i = 0;
+    if (value != inform->value_d)
+        value = inform->value_d;
 	if (value == 0)
 	{
 		if (inform->plus && !inform->value_is_neg)
