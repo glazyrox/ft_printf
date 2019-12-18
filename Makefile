@@ -6,7 +6,7 @@
 #    By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/22 16:20:25 by rgwayne-          #+#    #+#              #
-#    Updated: 2019/12/12 19:07:58 by rgwayne-         ###   ########.fr        #
+#    Updated: 2019/12/18 13:06:06 by rgwayne-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,14 @@ SRC = 	ft_printf.c \
 		string_maker.c \
 		word_width_maker.c \
 		ft_new_itoa.c \
-		test_lists.c \
 		ft_flags.c \
 		word_prec_maker.c \
-		buffer.c \
 		libft.c \
 		ft_for_int.c \
 		ft_long_itoa.c \
 		ft_for_int2.c \
-		ft_for_octal.c
+		ft_for_octal.c \
+		ft_hex.c 
 
 all: $(NAME)
 

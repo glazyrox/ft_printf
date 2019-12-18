@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:03:43 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/16 19:35:35 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/18 19:40:16 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int ac, char **av)
     int b = -144;
     int c = 1455;
     int d = -130;
-    printf("\nreturn %d\n", ft_printf("%#2.7o", 3267));
-    printf("\nreturn %d\n", printf("%0X", 255));
+    printf("\nreturn %d\n", ft_printf("%X", -42));
+    printf("\nreturn %d\n", printf("%X", -42));
     return (0);
 }

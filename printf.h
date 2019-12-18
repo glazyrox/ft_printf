@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/16 19:54:28 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/18 19:47:06 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 #   include <stdio.h>
 
 #   define SIZE 10000
-
-typedef struct sNode {
-    char value[SIZE];
-    struct sNode *next;
-    int count;
-}              tNode;
 
 typedef struct  s_struct
 {
@@ -39,6 +33,7 @@ typedef struct  s_struct
 	int widthisneg; // ширина отрицательная
     int precision; // точность
     unsigned long int value_d; // значение из стэка для d/i
+    char value_hex[20];
     int h;
     int hh;
     int l;
@@ -53,8 +48,6 @@ typedef struct s_buff
 	size_t size_of_all; // каждый раз после обработки считаем сумму
     size_t previous_len; 
     size_t size_lists;
-    tNode *p_begin; // листы для сохранения значений
-    tNode *p_head;
     int struct_pointer;
     int flag;
     int test;
@@ -87,10 +80,9 @@ char *d_value_maker(t_struct *inform, char *buffer); // для di
 char *u_value_maker(t_struct *inform, char *buffer); // для u
 char *o_value_maker(t_struct *inform, char *buffer);
 int ft_value_o(t_struct *inform, va_list list, int i); // для o
+int ft_value_x(t_struct *inform, va_list list, int i);
 char *word_maker(t_struct *inform, char *buffer, int len);
 int va_value(t_struct *inform, va_list list, int i);
-tNode *ft_create_list(tNode **head);
-void print_list(tNode *p_begin);
 void ft_octal(t_struct *inform); // перевод в восьмиричную 
 char		*ft_new_itoa(long int n);
 // всякие itoa
@@ -98,7 +90,7 @@ char		*ft_long_itoa(unsigned long int n);
 char	*ft_long_final(unsigned long int f);
 char		*ft_oct_itoa(long n);
 static int	ft_long_len(unsigned long int f);
-char *ft_hexer(t_struct *inform);
+void ft_hexer(t_struct *inform);
 // обработка с ширины
 char *ft_spacer_negative(char *s1, char sym, t_struct *inform);
 char *start_by_width(t_struct *inform, char *buffer, int len);
@@ -112,9 +104,10 @@ char *start_by_prec(t_struct *inform, char *buffer, int len);
 // обработка с длины
 char *start_by_len(t_struct *inform, char *buffer, int len);
 // буффер
-void make_first_list(char *str, t_buff *buff_size, size_t len);
 char	*ft_strfncat(char *s1, const char *s2, size_t n);
-tNode* ft_to_the_last(tNode **head);
 char	*ft_strfromcat(char *s1, const char *s2, size_t len, size_t n);
-
+// hex
+int hex_len(long int value, t_struct *inform);
+char *hex_rev(t_struct *inform);
+char *x_value_maker(t_struct *inform, char *buffer);
 #endif

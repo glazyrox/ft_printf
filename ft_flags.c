@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/16 18:45:35 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/18 19:34:16 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ char *ft_zeroes(char *s1, t_struct *inform, int len)
 
     i = 0;
     if (ft_flags(s1, inform, i, len))
+    {
         i++;
+        if (inform->type == 'X' || (inform->type == 'x' && inform->sharp))
+        {
+            i++;
+            len--;
+        }
+    }
     else
         len++;
-    // if (inform->value_is_neg)
-    //     len += 1;
     while (i <= inform->width - len)
     {
         s1[i++] = '0';
@@ -55,11 +60,15 @@ char *ft_flags(char *str, t_struct *inform, int i, int len)
         str[i] = ' ';
         return (str);
     }
-    else if (!inform->plus && !inform->value_is_neg && inform->sharp)
+    else if (!inform->plus && !inform->value_is_neg && inform->sharp && inform->value_d != 0)
     {
         if (inform->precision > len && !inform->widthisneg && inform->width != 0 && inform->width > inform->precision) // govno
             return (str);
         str[i] = 48;
+        if (inform->type == 'x' && inform->value_d != 0)
+            str[++i] = 'x';
+        if (inform->type == 'X' && inform->value_d != 0)
+            str[++i] = 'X';
         return (str);
     }
     return (0);
@@ -129,10 +138,14 @@ char *ft_negative_flags(char *str, t_struct *inform)
         str[0] = ' ';
         return (str);
     }
-    else if (inform->type == 'o' && inform->sharp && !inform->dack_prec)
+    else if ((inform->type == 'o' || inform->type == 'X' || inform->type == 'x') && inform->sharp && !inform->dack_prec)
     {
         if (inform->value_d == 0 )
             return(0);
+        if (inform->type == 'X')
+            str[1] = 'X';
+        else if (inform->type == 'x')
+            str[1] = 'x';
         str[0] = '0';
         return (str);
     }

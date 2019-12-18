@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:10:03 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/15 18:51:43 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/18 18:19:46 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ char *start_by_prec(t_struct *inform, char *buffer, int len)
     if(ft_flags(str, inform, i, len))
     {
         i++;
+        if ((inform->type == 'X' || inform->type == 'x') && inform->sharp)
+        {
+            i++;
+            len--;
+        }
         len--;
         if (inform->type == 'o')
             len++;

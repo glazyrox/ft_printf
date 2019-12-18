@@ -6,11 +6,28 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:14:59 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/16 15:00:17 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/18 15:31:30 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+char *x_value_maker(t_struct *inform, char *buffer)
+{
+	char *str;
+    
+    if (inform->h)
+		str = hex_rev(inform);
+	else if (inform->hh)
+		str = hex_rev(inform);
+	else if (inform->l)
+		str = hex_rev(inform);
+	else if (inform->ll)
+		str = hex_rev(inform);
+	else
+		str = hex_rev(inform);
+	return (str);
+}
 
 char *o_value_maker(t_struct *inform, char *buffer)
 {

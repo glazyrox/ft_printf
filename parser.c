@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/15 20:19:37 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/18 16:15:45 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,13 +133,17 @@ int ft_type(char *format, va_list list, t_buff *buff_size)
     inform = ft_memalloc(sizeof(t_struct));
     while (format[i++])
     {
-        if (format[i] == 'd' || format[i] == 'i' || format[i] == 'u' || format[i] == 'o') // отрефактори в функцию, если надо будет (скорее всего надо)
+        if (format[i] == 'd' || format[i] == 'i' || format[i] == 'u' || format[i] == 'o' || format[i] == 'x' || format[i] == 'X') // отрефактори в функцию, если надо будет (скорее всего надо)
         {
             inform->type = 'd';
             if (format[i] == 'u')
                 inform->type = 'u';
             else if (format[i] == 'o')
                 inform->type = 'o';
+            else if (format[i] == 'x')
+                inform->type = 'x';
+            else if (format[i] == 'X')
+                inform->type = 'X';
             ft_flag(inform, (char *)format, i, buff_size, list);
             if (!(format[i + 1] == '\0'))
             {

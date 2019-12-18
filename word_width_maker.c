@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/16 18:17:43 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/18 19:47:13 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ char *start_by_neg_width(t_struct *inform, char *buffer, int len) // функц�
 		len -= 2;
 		if (inform->type == 'o')
 			len += 1;
+		else if ((inform->type == 'X' || inform->type == 'x') && inform->sharp)
+		{
+			i++;
+			len -= 2;
+		}
 	}
 	if (len < 0 && inform->type == 'o')
 		len *= -1;
@@ -63,7 +68,7 @@ char *start_by_width(t_struct *inform, char *buffer, int len) // функция 
 			{
 				str[i++] = 48;
 				g++;
-			}
+ 			}
 		}
 		ft_strcat(str, buffer, inform);
 	}
@@ -95,6 +100,8 @@ char *value_maker(t_struct *inform, char *buffer) // тут вписывать �
 		str = u_value_maker(inform, buffer);
 	else if (inform->type == 'o')
 		str = o_value_maker(inform, buffer);
+	else if (inform->type == 'x' || inform->type == 'X')
+		str = x_value_maker(inform, buffer);
 	return (str);
 }
 
