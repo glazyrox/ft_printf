@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/18 19:34:16 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/19 21:04:06 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ char *ft_flags(char *str, t_struct *inform, int i, int len)
     }
     else if (!inform->plus && !inform->value_is_neg && inform->sharp && inform->value_d != 0)
     {
-        if (inform->precision > len && !inform->widthisneg && inform->width != 0 && inform->width > inform->precision) // govno
-            return (str);
+        // if (inform->precision > len && !inform->widthisneg && inform->width != 0 && inform->width > inform->precision) // govno
+        //     return (str);
         str[i] = 48;
         if (inform->type == 'x' && inform->value_d != 0)
             str[++i] = 'x';

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:12:19 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/18 19:10:28 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/19 19:24:27 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void width_and_precision(t_struct *inform, int len)
 		inform->final_size = inform->width;
 	else
 	{
-		if (inform->type == 'X' && inform->precision > len && inform->width < inform->precision)
-			inform->final_size += inform->precision - len;
-		else
-			inform->final_size = inform->precision;
+		inform->final_size = inform->precision;
+		if ((inform->type == 'X' || inform->type == 'x') && inform->sharp && inform->value_d != 0)
+			inform->final_size += 2;
+			
 	}
 	if (inform->final_size < len)
 		inform->final_size = len;

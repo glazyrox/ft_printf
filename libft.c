@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 20:04:09 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/18 19:25:32 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/19 20:34:08 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ char	*ft_strcat(char *s1, const char *s2, t_struct *inform)
 		s1[i] = s2[g];
 		if (s2[g] == 48 && inform->dack_prec == 2 && inform->sharp == 0)
 			s1[i] = ' ';
+		else if (s2[g] == 48 && inform->dack_prec == 2 && inform->sharp == 1 && inform->width && (inform->type == 'x' || inform->type == 'X'))
+			s1[i] = ' ';
+		else if (s2[g] == 48 && inform->dack_prec == 2 && inform->sharp == 1 && !inform->width && (inform->type == 'x' || inform->type == 'X'))
+		{
+			inform->final_size -= 1;
+			s1[i] = '\0';
+		}
 		g++;
 		i++;
 	}

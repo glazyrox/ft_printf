@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/18 19:47:13 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/19 19:12:52 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,5 @@ void ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
 	str = word_maker(inform, buffer, len);
 	write(1, str, inform->final_size);
 	free(buffer);
+	free(str);
 }

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 19:38:08 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/18 19:48:45 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/19 19:57:27 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,6 @@ int hex_len(long int value, t_struct *inform)
 			i++;
 		return(i);
 	}
-    if (value < 0)
-	{
-        i++;
-		inform->value_is_neg = 1;
-	}
     else 
     {
 		if (inform->space && !inform->plus)
@@ -91,31 +86,31 @@ int ft_value_x(t_struct *inform, va_list list, int i)
     len = 0;
     if (i == 1)
     {
-    	inform->value_d = va_arg(list, long);
+    	inform->value_d = va_arg(list, unsigned long);
         ft_hexer(inform);
 		len = hex_len(inform->value_d, inform);
     }
 	else if (i == 2)
     {
-        inform->value_d = va_arg(list, long);
+        inform->value_d = va_arg(list, unsigned long);
         ft_hexer(inform);
 		len = hex_len(inform->value_d, inform);
     }
 	else if (i == 3)
     {
-        inform->value_d = va_arg(list, int);
+        inform->value_d = va_arg(list, unsigned int);
         ft_hexer(inform);
 		len = hex_len((short)inform->value_d, inform);
     }
 	else if (i == 4)
     {
-        inform->value_d = va_arg(list, int);
+        inform->value_d = va_arg(list, unsigned int);
         ft_hexer(inform);
 		len = hex_len((char)inform->value_d, inform);
     }
 	if (i == 5)
     {
-        inform->value_d = va_arg(list, int);
+        inform->value_d = va_arg(list, unsigned long long int);
         ft_hexer(inform);
 		len = hex_len(inform->value_d, inform);
     }
