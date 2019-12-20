@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/19 15:50:15 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/20 18:39:49 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct  s_struct
     int width;
 	int widthisneg; // ширина отрицательная
     int precision; // точность
-    unsigned long int value_d; // значение из стэка для d/i
+    intmax_t value_d; // значение из стэка для d/i
     char value_hex[20];
     int h;
     int hh;
@@ -90,7 +90,7 @@ char		*ft_long_itoa(unsigned long int n);
 char	*ft_long_final(unsigned long int f);
 char		*ft_oct_itoa(long n);
 static int	ft_long_len(unsigned long int f);
-void ft_hexer(t_struct *inform);
+void ft_hexer(t_struct *inform, int i);
 // обработка с ширины
 char *ft_spacer_negative(char *s1, char sym, t_struct *inform);
 char *start_by_width(t_struct *inform, char *buffer, int len);

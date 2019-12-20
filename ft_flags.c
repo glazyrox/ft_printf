@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/19 21:04:06 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/20 15:53:45 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,11 @@ char *ft_flags(char *str, t_struct *inform, int i, int len)
     }
     else if (!inform->plus && !inform->value_is_neg && inform->sharp && inform->value_d != 0)
     {
-        // if (inform->precision > len && !inform->widthisneg && inform->width != 0 && inform->width > inform->precision) // govno
-        //     return (str);
+        if (inform->precision > len && !inform->widthisneg && inform->width != 0 && inform->width > inform->precision) // govno
+        {
+            if (inform->type != 'X' && inform->type != 'x')
+                return (str);
+        }
         str[i] = 48;
         if (inform->type == 'x' && inform->value_d != 0)
             str[++i] = 'x';
@@ -81,6 +84,8 @@ char *ft_spacer(char *s1, char sym, t_struct *inform, int len)
     i = 0;
     if (inform->precision > len)
     {
+        if ((inform->type == 'x' || inform->type == 'X') && inform->sharp && inform->width > inform->precision && inform->precision != 0 && inform->value_d != 0)
+            inform->precision += 1;
         while (i < inform->width - inform->precision)
             s1[i++] = sym;
         if (!ft_flags(s1, inform, i - 1, len))
@@ -138,7 +143,7 @@ char *ft_negative_flags(char *str, t_struct *inform)
         str[0] = ' ';
         return (str);
     }
-    else if ((inform->type == 'o' || inform->type == 'X' || inform->type == 'x') && inform->sharp && !inform->dack_prec)
+    else if ((inform->type == 'o' || inform->type == 'X' || inform->type == 'x') && inform->sharp && !inform->dack_prec && inform->value_d != 0)
     {
         if (inform->value_d == 0 )
             return(0);

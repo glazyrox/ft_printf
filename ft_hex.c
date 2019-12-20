@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 19:38:08 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/19 19:57:27 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/20 18:51:35 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,20 @@ int hex_len(long int value, t_struct *inform)
     return(i);
 }
 
-void ft_hexer(t_struct *inform)
+void ft_hexer(t_struct *inform, int flag)
 {
     long int test;
-    long int rev_nbr;
     int i;
+    unsigned long long nb;
 
     i = 0;
-    test = inform->value_d;
-    while (inform->value_d > 16)
+    if (flag == 3)
+        inform->value_d = (unsigned short)inform->value_d;
+    else if (flag == 4)
+        inform->value_d = (unsigned char)inform->value_d;
+    else if (flag == 5)
+        inform->value_d = (unsigned int)inform->value_d;
+    while (inform->value_d >= 16)
     {
         inform->value_hex[i] = (inform->value_d % 16 < 10) ? inform->value_d % 16 + '0' : inform->value_d % 16 - 10 + 'A';
         inform->value_d /= 16;
@@ -82,36 +87,36 @@ void ft_hexer(t_struct *inform)
 int ft_value_x(t_struct *inform, va_list list, int i)
 {
     int len;
-
+    
     len = 0;
     if (i == 1)
     {
     	inform->value_d = va_arg(list, unsigned long);
-        ft_hexer(inform);
+        ft_hexer(inform, 1);
 		len = hex_len(inform->value_d, inform);
     }
 	else if (i == 2)
     {
         inform->value_d = va_arg(list, unsigned long);
-        ft_hexer(inform);
+        ft_hexer(inform, 2);
 		len = hex_len(inform->value_d, inform);
     }
 	else if (i == 3)
     {
         inform->value_d = va_arg(list, unsigned int);
-        ft_hexer(inform);
-		len = hex_len((short)inform->value_d, inform);
+        ft_hexer(inform, 3);
+		len = hex_len(inform->value_d, inform);
     }
 	else if (i == 4)
     {
-        inform->value_d = va_arg(list, unsigned int);
-        ft_hexer(inform);
-		len = hex_len((char)inform->value_d, inform);
+        inform->value_d = va_arg(list, int);
+        ft_hexer(inform, 4);
+		len = hex_len(inform->value_d, inform);
     }
 	if (i == 5)
     {
         inform->value_d = va_arg(list, unsigned long long int);
-        ft_hexer(inform);
+        ft_hexer(inform, 5);
 		len = hex_len(inform->value_d, inform);
     }
     return (len);
