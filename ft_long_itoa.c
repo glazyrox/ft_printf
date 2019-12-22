@@ -6,13 +6,13 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:02:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/17 15:50:27 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/21 14:41:46 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static int	ft_long_len(unsigned long int f)
+int	ft_long_len(unsigned long int f)
 {
 	int		i;
 

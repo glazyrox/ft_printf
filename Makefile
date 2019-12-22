@@ -6,13 +6,13 @@
 #    By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/22 16:20:25 by rgwayne-          #+#    #+#              #
-#    Updated: 2019/12/18 13:06:06 by rgwayne-         ###   ########.fr        #
+#    Updated: 2019/12/22 19:39:19 by rgwayne-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-# FLAGS = -Wall -Wextra -Werror
+//FLAGS = -Wall -Wextra -Werror
 
 SRC = 	ft_printf.c \
 		parser.c \
@@ -27,7 +27,10 @@ SRC = 	ft_printf.c \
 		ft_long_itoa.c \
 		ft_for_int2.c \
 		ft_for_octal.c \
-		ft_hex.c 
+		ft_hex.c \
+		parser2.c \
+		ft_for_c.c \
+		ft_for_s.c
 
 all: $(NAME)
 

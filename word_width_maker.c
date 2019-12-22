@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/20 13:14:23 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/22 19:52:57 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char *start_by_width(t_struct *inform, char *buffer, int len) // функция 
 	{
 		str = ft_memalloc(inform->final_size + 1);
 		if (!(ft_spacer(str, ' ', inform, len)))
-			len -= 1;
+			len -= (len != inform->precision || inform->space || inform->value_is_neg || inform->plus) ? 1 : 0;
 		while (str[i])
 			i++;
 		if (inform->precision >= len)
@@ -102,6 +102,10 @@ char *value_maker(t_struct *inform, char *buffer) // тут вписывать �
 		str = o_value_maker(inform, buffer);
 	else if (inform->type == 'x' || inform->type == 'X')
 		str = x_value_maker(inform, buffer);
+	else if (inform->type == 'c' || inform->type == '%')
+		str = c_value_maker(inform, buffer);
+	else if (inform->type == 's')
+		str = s_value_maker(inform, buffer);
 	return (str);
 }
 
@@ -111,8 +115,11 @@ void ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
 	char *str;
 
 	buffer = value_maker(inform, buffer); // buffer можно вообще не передавать же, отрефакторить
-	str = word_maker(inform, buffer, len);
+	if (inform->type != 's')
+		str = word_maker(inform, buffer, len);
+	else
+		str = str_maker(inform, buffer, len);
 	write(1, str, inform->final_size);
-	free(buffer);
-	free(str);
+	//free(buffer);
+	//free(str);
 }

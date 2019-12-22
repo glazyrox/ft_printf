@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/18 16:15:45 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/22 20:02:31 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va
             inform->precision = ft_new_atoi(format, i + 1, stop);
             if (inform->precision == 0)
                 inform->dack_prec = 2;
-            inform->zero = 0;
+            inform->zero = (inform->type != 's') ? 0 : 1;
             inform->stop = i;
             ft_width(inform, format, stop, buff_size, list);
             return (0);
@@ -102,11 +102,7 @@ int ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list
     while (i++ < stop)
     {
         if (format[i] >= 49 && format[i] <= 57)
-        {
-            inform->stopflags = 1;
-            if (inform->stopflags == 1) // лол
-                break;
-        }
+            break;
         else if (format[i] == '+' && inform->type != 'u')
            inform->plus = 1; 
         else if (format[i] == '-')
@@ -133,17 +129,8 @@ int ft_type(char *format, va_list list, t_buff *buff_size)
     inform = ft_memalloc(sizeof(t_struct));
     while (format[i++])
     {
-        if (format[i] == 'd' || format[i] == 'i' || format[i] == 'u' || format[i] == 'o' || format[i] == 'x' || format[i] == 'X') // отрефактори в функцию, если надо будет (скорее всего надо)
+        if (ft_diouxx(inform, format[i])) // отрефактори в функцию потом
         {
-            inform->type = 'd';
-            if (format[i] == 'u')
-                inform->type = 'u';
-            else if (format[i] == 'o')
-                inform->type = 'o';
-            else if (format[i] == 'x')
-                inform->type = 'x';
-            else if (format[i] == 'X')
-                inform->type = 'X';
             ft_flag(inform, (char *)format, i, buff_size, list);
             if (!(format[i + 1] == '\0'))
             {
@@ -154,7 +141,6 @@ int ft_type(char *format, va_list list, t_buff *buff_size)
                 return (i);
             break;
         }
-        buff_size->struct_pointer++;
     }
     return (0);
 }

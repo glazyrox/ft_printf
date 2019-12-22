@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:10:03 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/18 18:19:46 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/22 17:06:55 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ int not_arg_searcher(char *format, t_buff *buff_size)
             return (i);
         }
         if (format[i + 1] == '\0')
+        {
+            ft_text(format, i, buff_size);
             return (i);
+        }
         i++;
     }
     ft_text(format, i, buff_size);

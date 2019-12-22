@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 19:38:08 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/20 18:51:35 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/21 14:15:30 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ int hex_len(long int value, t_struct *inform)
 			i++;
         if (inform->plus)
             i++;
-        if (inform->sharp)
+        if (inform->sharp && inform->type != 'o')
             i += 2;
+        else if (inform->sharp && inform->type == 'o')
+            i += 1;
     }
     i += inform->final_size;
     return(i);
@@ -63,9 +65,7 @@ int hex_len(long int value, t_struct *inform)
 
 void ft_hexer(t_struct *inform, int flag)
 {
-    long int test;
     int i;
-    unsigned long long nb;
 
     i = 0;
     if (flag == 3)

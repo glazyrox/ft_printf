@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/20 15:53:45 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/22 19:24:10 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char *ft_flags(char *str, t_struct *inform, int i, int len)
     }
     else if (!inform->plus && !inform->value_is_neg && inform->sharp && inform->value_d != 0)
     {
-        if (inform->precision > len && !inform->widthisneg && inform->width != 0 && inform->width > inform->precision) // govno
+        if (inform->precision > len && !inform->widthisneg && inform->width != 0 && inform->width > inform->precision)
         {
             if (inform->type != 'X' && inform->type != 'x')
                 return (str);
@@ -123,6 +123,8 @@ char *ft_spacer_negative(char *s1, char sym, t_struct *inform)
 	s1[inform->final_size] = '\0';
 	while (i < inform->final_size)
 		s1[i++] = sym;
+    if (inform->type == 'c' && inform->null_for_c)
+        s1[0] = '\0';
 	return (s1);
 }
 

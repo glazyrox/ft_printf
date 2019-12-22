@@ -6,11 +6,21 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:14:59 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/18 15:31:30 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/22 18:48:41 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+char *c_value_maker(t_struct *inform, char *buffer)
+{
+	char *str;
+
+	str = ft_memalloc(inform->final_size + 1);
+	str[0] = inform->value_hex[0];
+	str[1] = '\0';
+	return (str); 
+}
 
 char *x_value_maker(t_struct *inform, char *buffer)
 {
@@ -34,15 +44,15 @@ char *o_value_maker(t_struct *inform, char *buffer)
 	char *str;
     
     if (inform->h)
-		str = ft_oct_itoa(inform->value_d);
+		str = hex_rev(inform);
 	else if (inform->hh)
-		str = ft_oct_itoa(inform->value_d);
+		str = hex_rev(inform);
 	else if (inform->l)
-		str = ft_long_itoa((long)inform->value_d);
+		str = hex_rev(inform);
 	else if (inform->ll)
-		str = ft_new_itoa((long long)inform->value_d);
+		str = hex_rev(inform);
 	else
-		str = ft_new_itoa(inform->value_d);
+		str = hex_rev(inform);
 	return (str);
 }
 

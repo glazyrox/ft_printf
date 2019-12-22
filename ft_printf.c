@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:28:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/11 18:29:38 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/22 15:47:57 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,15 @@ int ft_printf(const char *format, ...)
     while (*format)
     {
         if (*format == '%')
-            format += ft_type((char *)format, list, buff_size);
+        {
+            if (format[1] == '%')
+            {
+                format++;
+                format += not_arg_searcher((char *)format, buff_size);
+            }
+            else
+                format += ft_type((char *)format, list, buff_size);
+        }
         else
             format += not_arg_searcher((char *)format, buff_size);
         format++;

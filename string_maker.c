@@ -6,13 +6,13 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:12:19 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/19 19:24:27 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/22 19:31:42 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void width_and_precision(t_struct *inform, int len)
+void width_and_precision(t_struct *inform, size_t len)
 {
 	if (inform->width > inform->precision)
 		inform->final_size = inform->width;
@@ -65,27 +65,21 @@ int va_value(t_struct *inform, va_list list, int i)
 		len = ft_value_o(inform, list, i);
 	else if (inform->type == 'x' || inform->type == 'X')
 		len = ft_value_x(inform, list, i);
+	else if (inform->type == 'c' || inform->type == '%')
+		len = ft_value_c(inform, list, i);
+	else if (inform->type == 's')
+		len = ft_value_s(inform, list, i);
     return (len);
 }
 
 int ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list)
 {
-    char *str;
-    int len;
+    size_t len;
 	int i;
 
     len = 0;
 	i = flag_corrector(inform);
-	if (i == 1)
-		len = va_value(inform, list, i);
-	else if (i == 2)
-		len = va_value(inform, list, i);
-	else if (i == 3)
-		len = va_value(inform, list, i);
-	else if (i == 4)
-		len = va_value(inform, list, i);
-	if (i == 5)
-		len = va_value(inform, list, i);
+	len = va_value(inform, list, i);
 	width_and_precision(inform, len);
 	ft_make_arg(inform, buff_size, len);
 	buff_size->size_of_all += inform->final_size; // dupl
