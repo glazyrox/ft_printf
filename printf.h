@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/23 17:04:29 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/23 19:45:16 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int us_int_len(unsigned short int value, t_struct *inform); // for short u
 char *d_value_maker(t_struct *inform, char *buffer); // для di
 char *u_value_maker(t_struct *inform, char *buffer); // для u
 char *o_value_maker(t_struct *inform, char *buffer);
+char *s_value_maker(t_struct *inform, char *buffer);
+char *p_value_maker(t_struct *infrom, char *buffer);
 int ft_value_o(t_struct *inform, va_list list, int i); // для o
 int ft_value_x(t_struct *inform, va_list list, int i);
 char *word_maker(t_struct *inform, char *buffer, int len);
@@ -120,9 +122,10 @@ char *c_value_maker(t_struct *inform, char *buffer);
 void flag_clear(t_struct *inform);
 // s
 int ft_value_s(t_struct *inform, va_list list, int i);
-char *s_value_maker(t_struct *inform, char *buffer);
 char *str_maker(t_struct *inform, char *buffer, int len);
 char *ft_widther(t_struct *inform, char *buffer, int len);
 char *ft_minus_widther(t_struct *inform, char *buffer, int len);
-
+// p
+int ft_value_p(t_struct *inform, va_list list, int i);
+char *p_value_maker(t_struct *infrom, char *buffer);
 #endif
