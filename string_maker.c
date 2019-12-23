@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:12:19 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/22 19:31:42 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/23 18:05:48 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void width_and_precision(t_struct *inform, size_t len)
 {
+	if (inform->type == 's')
+		return;
 	if (inform->width > inform->precision)
 		inform->final_size = inform->width;
 	else
@@ -69,6 +71,8 @@ int va_value(t_struct *inform, va_list list, int i)
 		len = ft_value_c(inform, list, i);
 	else if (inform->type == 's')
 		len = ft_value_s(inform, list, i);
+	else if (inform->type == 'p')
+		len = ft_value_p(inform, list, i);
     return (len);
 }
 

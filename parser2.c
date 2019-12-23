@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 16:48:35 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/22 18:29:34 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/23 18:04:28 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int ft_csp(t_struct *inform, char sym)
         inform->type = 's';
         return (1);
     }
-    // else if (sym == 'p')
-    // {
-    //     inform->type = 'p';
-    //     return (1);
-    // }
+    else if (sym == 'p')
+    {
+        inform->type = 'p';
+        return (1);
+    }
     return (0);
 }
 

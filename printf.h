@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/22 19:39:04 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/23 17:04:29 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct  s_struct
     int value_is_neg;
     int dack_prec;
     int null_for_c;
+    int s_len;
     char *govno;
 	size_t final_size; // общий размер строки за одну обработку!
 }               t_struct;
@@ -120,6 +121,8 @@ void flag_clear(t_struct *inform);
 // s
 int ft_value_s(t_struct *inform, va_list list, int i);
 char *s_value_maker(t_struct *inform, char *buffer);
-void ft_strflag_clear(t_struct *inform);
 char *str_maker(t_struct *inform, char *buffer, int len);
+char *ft_widther(t_struct *inform, char *buffer, int len);
+char *ft_minus_widther(t_struct *inform, char *buffer, int len);
+
 #endif
