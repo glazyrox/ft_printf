@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/23 19:45:16 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/24 17:56:41 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #   include <stdarg.h>
 #   include <stdlib.h>
 #   include <stdio.h>
-
-#   define SIZE 10000
 
 typedef struct  s_struct
 {
@@ -43,7 +41,7 @@ typedef struct  s_struct
     int null_for_c;
     int s_len;
     char *govno;
-	size_t final_size; // общий размер строки за одну обработку!
+	int final_size; // общий размер строки за одну обработку!
 }               t_struct;
 
 typedef struct s_buff
@@ -99,7 +97,9 @@ void ft_hexer(t_struct *inform, int i);
 char *ft_spacer_negative(char *s1, char sym, t_struct *inform);
 char *start_by_width(t_struct *inform, char *buffer, int len);
 char *start_by_neg_width(t_struct *inform, char *buffer, int len);
+char *start_by_neg_width2(t_struct *inform, char *str, char *buffer, int len, int i);
 char *ft_negative_flags(char *str, t_struct *inform);
+char *ft_strpcat(char *s1, const char *s2, t_struct *inform, int len); // for p
 char *ft_spacer(char *s1, char sym, t_struct *inform, int len);
 char *ft_flags(char *str, t_struct *inform, int i, int len);
 char *ft_zeroes(char *s1, t_struct *inform, int len);
@@ -128,4 +128,5 @@ char *ft_minus_widther(t_struct *inform, char *buffer, int len);
 // p
 int ft_value_p(t_struct *inform, va_list list, int i);
 char *p_value_maker(t_struct *infrom, char *buffer);
+
 #endif

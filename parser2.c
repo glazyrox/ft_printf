@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 16:48:35 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/23 19:18:45 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/24 15:44:21 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int ft_diouxx(t_struct *inform, char sym)
         return (1);
     }
     else if (ft_csp(inform, sym))
-    {
         return (1);
-    }
     return (0);
 }

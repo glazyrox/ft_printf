@@ -6,11 +6,26 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:02:37 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/09 19:02:08 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/24 17:57:19 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+char *ft_strpcat(char *s1, const char *s2, t_struct *inform, int len)
+{
+	int i;
+	int g;
+	
+	i = 0;
+	g = 2;
+	s1[0] = '0';
+	s1[1] = 'x';
+	while (i++ < len)
+		s1[g++] = '0';
+	ft_strcat(s1, inform->govno, inform);
+	return (s1);
+}
 
 char	*ft_strfromcat(char *s1, const char *s2, size_t len, size_t n)
 {

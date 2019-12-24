@@ -6,13 +6,13 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/23 19:37:05 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/24 17:04:50 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-char *start_by_neg_width(t_struct *inform, char *buffer, int len) // функция для работы с отрицательной шириной
+char		*start_by_neg_width(t_struct *inform, char *buffer, int len)
 {
 	char *str;
 	int i;
@@ -31,13 +31,18 @@ char *start_by_neg_width(t_struct *inform, char *buffer, int len) // функц�
 			len -= 2;
 		}
 	}
+	return (start_by_neg_width2(inform, str, buffer, len, i));
+}
+
+char	*start_by_neg_width2(t_struct *inform, char *str, char *buffer, int len, int i)
+{
 	if (len < 0 && inform->type == 'o')
 		len *= -1;
 	if (len < 0)
 		len = 0;
 	if (inform->precision > len)
 	{
-		while (i < inform->precision - (len)) // т.к. на минус забиваем из-за конца строки
+		while (i < inform->precision - (len))
 			str[i++] = '0';
 	}
 	ft_strcat(str, buffer, inform);
@@ -45,7 +50,7 @@ char *start_by_neg_width(t_struct *inform, char *buffer, int len) // функц�
 	return (str);
 }
 
-char *start_by_width(t_struct *inform, char *buffer, int len) // функция для работы с положительной шириной
+char		*start_by_width(t_struct *inform, char *buffer, int len)
 {
 	char *str;
 	int i;
@@ -64,36 +69,33 @@ char *start_by_width(t_struct *inform, char *buffer, int len) // функция 
 			i++;
 		if (inform->precision >= len)
 		{
-			while (g < inform->precision - len)
-			{
+			while (g++ < inform->precision - len)
 				str[i++] = 48;
-				g++;
- 			}
 		}
 		ft_strcat(str, buffer, inform);
 	}
 	return (str);
 }
 
-char *word_maker(t_struct *inform, char *buffer, int len) // тут разбив по ширине
+char		*word_maker(t_struct *inform, char *buffer, int len)
 {
 	char *str;
 	int i;
 
 	i = 0;
 	if (inform->width > inform->precision && inform->width > len)
-		str = start_by_width(inform, buffer, len); // по ширине
+		str = start_by_width(inform, buffer, len);
 	else if (inform->precision >= inform->width && inform->precision > len)
-		str = start_by_prec(inform, buffer, len); // по точности
-	else if (inform->precision <= len && inform->width <= len)
+		str = start_by_prec(inform, buffer, len);
+	else
 		str = start_by_len(inform, buffer, len);
 	return (str);
 }
 
-char *value_maker(t_struct *inform, char *buffer) // тут вписывать вэлью
+char		*value_maker(t_struct *inform, char *buffer)
 {
 	char *str;
-	
+
 	if (inform->type == 'd')
 		str = d_value_maker(inform, buffer);
 	else if (inform->type == 'u')
@@ -108,20 +110,22 @@ char *value_maker(t_struct *inform, char *buffer) // тут вписывать �
 		str = s_value_maker(inform, buffer);
 	else if (inform->type == 'p')
 		str = p_value_maker(inform, buffer);
+	else // место для f
+		return (str = NULL);
 	return (str);
 }
 
-void ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
-{	
+void		ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
+{
 	char *buffer;
 	char *str;
 
-	buffer = value_maker(inform, buffer); // buffer можно вообще не передавать же, отрефакторить
+	buffer = value_maker(inform, buffer);
 	if (inform->type != 's')
 		str = word_maker(inform, buffer, len);
 	else
 		str = str_maker(inform, buffer, len);
 	write(1, str, inform->final_size);
-	// free(buffer);
+	//free(buffer);
 	//free(str);
 }

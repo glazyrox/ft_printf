@@ -6,16 +6,16 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:12:19 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/23 19:22:15 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/24 16:50:58 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void width_and_precision(t_struct *inform, size_t len)
+void	width_and_precision(t_struct *inform, int len)
 {
 	if (inform->type == 's')
-		return;
+		return ;
 	if (inform->width > inform->precision)
 		inform->final_size = inform->width;
 	else
@@ -23,13 +23,13 @@ void width_and_precision(t_struct *inform, size_t len)
 		inform->final_size = inform->precision;
 		if ((inform->type == 'X' || inform->type == 'x') && inform->sharp && inform->value_d != 0)
 			inform->final_size += 2;
-			
 	}
 	if (inform->final_size < len)
 		inform->final_size = len;
+	inform->final_size = (inform->type == 'p' && inform->precision > len) ? inform->precision + 2 : inform->final_size;
 }
 
-int flag_corrector(t_struct *inform)
+int		flag_corrector(t_struct *inform)
 {
 	if (inform->ll == 1)
 	{
@@ -54,11 +54,11 @@ int flag_corrector(t_struct *inform)
 	return (5);
 }
 
-int va_value(t_struct *inform, va_list list, int i)
+int		va_value(t_struct *inform, va_list list, int i)
 {
-    int len;
+	int len;
 
-    len = 0;
+	len = 0;
 	if (inform->type == 'd')
 		len = ft_value_d(inform, list, i);
 	else if (inform->type == 'u')
@@ -73,39 +73,20 @@ int va_value(t_struct *inform, va_list list, int i)
 		len = ft_value_s(inform, list, i);
 	else if (inform->type == 'p')
 		len = ft_value_p(inform, list, i);
-    return (len);
+	return (len);
 }
 
-int ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list)
+int		ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list)
 {
-    size_t len;
+	size_t len;
 	int i;
 
-    len = 0;
+	len = 0;
 	i = flag_corrector(inform);
 	len = va_value(inform, list, i);
 	width_and_precision(inform, len);
 	ft_make_arg(inform, buff_size, len);
-	buff_size->size_of_all += inform->final_size; // dupl
-    free(inform);
-    return (0);
+	buff_size->size_of_all += inform->final_size;
+	free(inform);
+	return (0);
 }
-
-
-
-	// printf("              FLAGS\n");
-    // printf("MINUS %d\n", inform->minus);
-    // printf("PLUS %d\n", inform->plus);
-    // printf("SPACE %d\n", inform->space);
-    // printf("ZERO %d\n", inform->zero);
-    // printf("SHARP %d\n", inform->sharp);
-	// printf("WIDTHMINUS %d\n", inform->widthisneg);
-    // printf("              TOCHNOST\n");
-    // printf("%d\n", inform->precision);
-    // printf("              WIDTH\n");
-    // printf("%d\n", inform->width);
-    // printf("              MODIF\n");
-    // printf("h %d\n", inform->h);
-    // printf("hh %d\n", inform->hh);
-    // printf("l %d\n", inform->l);
-    // printf("ll %d\n", inform->ll);

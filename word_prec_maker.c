@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:10:03 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/22 17:06:55 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/24 17:56:28 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,17 @@ char *start_by_prec(t_struct *inform, char *buffer, int len)
         if (inform->type == 'o')
             len++;
     }
-    while (g < inform->precision - len)
+    if (inform->type == 'p' && inform->precision > len)
     {
-        str[i++] = 48;
-        g++;
+        while (g++ < inform->final_size - len)
+            str[i++] = 48;
+        ft_strpcat(str, buffer, inform, i);
     }
-    ft_strcat(str, buffer, inform);
+    else
+    {
+        while (g++ < inform->precision - len)
+            str[i++] = 48;
+        ft_strcat(str, buffer, inform);
+    }
     return (str);
 }
