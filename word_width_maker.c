@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/24 17:04:50 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/25 17:55:09 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ char		*value_maker(t_struct *inform, char *buffer)
 		str = s_value_maker(inform, buffer);
 	else if (inform->type == 'p')
 		str = p_value_maker(inform, buffer);
-	else // место для f
-		return (str = NULL);
+	else if (inform->type == 'f')
+		str = f_value_maker(inform, buffer);
 	return (str);
 }
 
@@ -126,6 +126,9 @@ void		ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
 	else
 		str = str_maker(inform, buffer, len);
 	write(1, str, inform->final_size);
-	//free(buffer);
-	//free(str);
+	// free(buffer);
+	// if (inform->type != 's')
+	// 	free(str);
+	// if (inform->type == 'p')
+	// 	free(inform->govno);
 }

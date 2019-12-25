@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:28:40 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/24 15:43:19 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/25 17:49:54 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ int ft_printf(const char *format, ...)
         format++;
     }
     va_end (list);
-    return (buff_size->size_of_all);
+    i = buff_size->size_of_all;
+    free(buff_size);
+    return (i);
 } 

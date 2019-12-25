@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 19:10:03 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/24 17:56:28 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/25 14:43:21 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char *start_by_prec(t_struct *inform, char *buffer, int len)
     {
         while (g++ < inform->final_size - len)
             str[i++] = 48;
-        ft_strpcat(str, buffer, inform, i);
+        ft_strpcat(str, inform, i);
     }
     else
     {

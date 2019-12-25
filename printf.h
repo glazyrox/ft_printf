@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/24 17:56:41 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/25 20:13:52 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,55 @@
 #   include <stdarg.h>
 #   include <stdlib.h>
 #   include <stdio.h>
+#   include <unistd.h>
+#	include <string.h>
+#	include <inttypes.h>
+#	include <limits.h>
+
+# define MAX_SIZE_BUF       16500 //5000
+# define MAX_INTEGER_SIZE	4932
+# define MAX_FRACT_SIZE		16500 //16383
+
+typedef struct              s_float
+{
+    char                   integer[MAX_INTEGER_SIZE];
+    char                   fract[MAX_FRACT_SIZE];
+    int                    size_int;
+    int                    size_fract;
+    int                    fract_length;
+}                           t_float;
+
+typedef union               s_print		    
+{
+    long double             number;
+    struct                 
+    {
+        unsigned long long  mant:64;
+	    short int           exp:15;
+	    unsigned int        sign:1;
+    }                       t_byte;
+}						    t_print;
+
+typedef enum                e_boolen
+{
+    True = 1,
+    False = !True
+}                           t_boolen;
+
+typedef struct              s_buf_power
+{
+    char buf[MAX_SIZE_BUF];
+    int power;
+    t_boolen init;
+}                           t_buf_power;
+
+typedef struct              s_power_of_2
+{
+    int integer[64];
+    int fract[64];
+    int size_int;
+    int size_fract;
+}                           t_power_of_2;
 
 typedef struct  s_struct
 {
@@ -31,6 +80,7 @@ typedef struct  s_struct
 	int widthisneg; // ширина отрицательная
     int precision; // точность
     intmax_t value_d; // значение из стэка для d/i
+    long double value_f;
     unsigned char value_hex[25];
     int h;
     int hh;
@@ -73,6 +123,7 @@ void ft_make_arg(t_struct *inform, t_buff *buff_size, int len);
 int ft_value_maker(t_struct *inform, t_buff *buff_size, va_list list);
 int     ft_value_d(t_struct *inform, va_list list, int i); // для di
 int ft_value_u(t_struct *inform, va_list list, int i); // для u
+int ft_value_f(t_struct *inform, va_list list, int i);
 int int_len(long int value, t_struct *inform); // для diu
 int ul_int_len(unsigned long int value, t_struct *inform); // для u
 int us_int_len(unsigned short int value, t_struct *inform); // for short u
@@ -99,7 +150,7 @@ char *start_by_width(t_struct *inform, char *buffer, int len);
 char *start_by_neg_width(t_struct *inform, char *buffer, int len);
 char *start_by_neg_width2(t_struct *inform, char *str, char *buffer, int len, int i);
 char *ft_negative_flags(char *str, t_struct *inform);
-char *ft_strpcat(char *s1, const char *s2, t_struct *inform, int len); // for p
+char *ft_strpcat(char *s1, t_struct *inform, int len); // for p
 char *ft_spacer(char *s1, char sym, t_struct *inform, int len);
 char *ft_flags(char *str, t_struct *inform, int i, int len);
 char *ft_zeroes(char *s1, t_struct *inform, int len);
@@ -128,5 +179,23 @@ char *ft_minus_widther(t_struct *inform, char *buffer, int len);
 // p
 int ft_value_p(t_struct *inform, va_list list, int i);
 char *p_value_maker(t_struct *infrom, char *buffer);
-
+// f
+int f_len(t_struct *inform);
+char *f_value_maker(t_struct *infrom, char *buffer);
+void    ft_beatuful_mass(char *long_num, int buf_size);
+void    ft_mass_sum(char *long_num1, char *long_num2);
+void    ft_longnum_to_2power(char *long_num, int power);
+void    ft_buf_riseto_power(t_buf_power *buffer, int to_power);
+t_float    ft_long_ariphm(t_power_of_2 powers);
+void    ft_power_to_massive(t_power_of_2 *powers, int power);
+char    *ft_float(long double a, t_struct *flags);
+void    ft_mass_multiply(char *buffer, int num);
+void    print_float_number(t_float *number, int len_int, int len_fract);
+void    print_struct_powers(t_power_of_2 *powers);
+void    ft_five_to_power(t_buf_power *buffer, int to_power);
+void    ft_fract_sum(t_float *number, t_buf_power *buffer);
+void    ft_longnum_to_5power(char *buffer, int power);
+void    ft_mass_multiply(char *buffer, int num);
+char    *float_tostr(t_float *number, t_struct *flags);
+int		ft_sizeint(char *integer, long double value);
 #endif

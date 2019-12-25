@@ -6,7 +6,7 @@
 #    By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/22 16:20:25 by rgwayne-          #+#    #+#              #
-#    Updated: 2019/12/24 17:05:43 by rgwayne-         ###   ########.fr        #
+#    Updated: 2019/12/25 18:19:13 by rgwayne-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,11 @@ SRC = 	ft_printf.c \
 		parser2.c \
 		ft_for_c.c \
 		ft_for_s.c \
-		ft_for_p.c
+		ft_for_p.c \
+		ft_for_f.c \
+		ft_fractal.c \
+		ft_float.c \
+		ft_long_ariphm.c
 
 all: $(NAME)
 

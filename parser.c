@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/24 15:46:42 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/25 16:58:19 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,6 @@ int ft_type(char *format, va_list list, t_buff *buff_size)
             break;
         }
     }
+    free(inform);
     return (0);
 }
