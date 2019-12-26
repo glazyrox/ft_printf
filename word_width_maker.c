@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/26 12:37:02 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 14:17:50 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char		*value_maker(t_struct *inform, char *buffer)
 		str = s_value_maker(inform, buffer);
 	else if (inform->type == 'p')
 		str = p_value_maker(inform, buffer);
-	else if (inform->type == 'f')
+	else
 		str = f_value_maker(inform, buffer);
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/25 20:13:52 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 16:10:49 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 #	include <string.h>
 #	include <inttypes.h>
 #	include <limits.h>
+#	include <math.h>
 
 # define MAX_SIZE_BUF       16500 //5000
-# define MAX_INTEGER_SIZE	4932
+# define MAX_INTEGER_SIZE	4934
 # define MAX_FRACT_SIZE		16500 //16383
 
 typedef struct              s_float
@@ -198,4 +199,6 @@ void    ft_longnum_to_5power(char *buffer, int power);
 void    ft_mass_multiply(char *buffer, int num);
 char    *float_tostr(t_float *number, t_struct *flags);
 int		ft_sizeint(char *integer, long double value);
+
+void    print_float_number(t_float *number, int len_int, int len_fract);
 #endif

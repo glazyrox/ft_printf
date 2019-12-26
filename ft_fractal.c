@@ -7,7 +7,7 @@ int		ft_sizeint(char *integer, long double value)
 	i = MAX_INTEGER_SIZE;
 	while (i > 0 && integer[i - 1] == 0)
 		--i;
-	i += ((value > -1 && value < 0) || (value < 1 && value > 0)) ? 1 : 0;
+	i += ((value > -1 && value <= 0) || (value < 1 && value >= 0)) ? 1 : 0;
 	return (i);
 }
 
@@ -29,19 +29,23 @@ char *float_tostr(t_float *number, t_struct *flags)
 		str[i] = number->integer[size_int - i - 1] + '0';
 		++i;
 	}
-	if (flags->precision == 0 && flags->dack_prec && number->fract[MAX_FRACT_SIZE - 1] >= 53)
+	// if (size_int == 1 && str[i])
+	// {
+		
+	// }
+	if (flags->precision == 0 && flags->dack_prec && number->fract[MAX_FRACT_SIZE - 1] >= 53 && MAX_FRACT_SIZE >= 1)
 		str[i - 1] += 1;
 	else if (!flags->dack_prec || flags->sharp == 1) // tut sharp
 	{
 		str[i++] = '.';
-		while (j <= flags->precision) // eto
+		while (j <= flags->precision && MAX_FRACT_SIZE - j >= 0) // eto
 		{
 			str[i] = number->fract[MAX_FRACT_SIZE - j] + '0';
 			++j;
 			++i;
 		}
 		--i;
-		if (number->fract[MAX_FRACT_SIZE - j - 2] + 48 >= '5')
+		if (MAX_FRACT_SIZE - j - 2 >= 0 && number->fract[MAX_FRACT_SIZE - j - 2] + 48 >= '5')
 		{
 			if (str[i] < '9')
 				str[i] += 1;

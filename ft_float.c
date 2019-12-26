@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:00:25 by bjasper           #+#    #+#             */
-/*   Updated: 2019/12/25 17:41:45 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 16:17:28 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,26 @@ char    *ft_float(long double a, t_struct *flags)
     int                 i;
     t_power_of_2        powers;
 	t_float number;
-    
+
     divis.number = a;
     divis.t_byte.exp -= 16383;
+	if ( divis.t_byte.exp == -16384)
+	{
+		if (divis.t_byte.mant << 1)
+		{
+			flags->zero = 0;
+			flags->precision = 0;
+			flags->space = 0;
+			return("nan");
+		}
+		else
+		{
+			flags->space = 0;
+			flags->zero = 0;
+			flags->precision = 0;
+			return ("inf");
+		}			
+	}
     i = 0;
     mask = 1L << 63;                           
     ft_bzero(&powers, sizeof(t_power_of_2));
@@ -63,15 +80,3 @@ char    *ft_float(long double a, t_struct *flags)
     number = ft_long_ariphm(powers);
 	return (float_tostr(&number, flags));
 }
-
-// int main()
-// {
-//    long double a;
-//    t_struct flags;
-	   
-//    a = 147893.47893087987L;
-//    flags.precision = 10;
-//    printf("result %s\n", ft_float(a, &flags)); 
-//    printf("result2 %.10Lf\n", a);
-//    return (0);
-// }

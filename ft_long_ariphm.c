@@ -95,5 +95,6 @@ t_float    ft_long_ariphm(t_power_of_2 powers)
         ft_beatuful_mass(number.fract, MAX_FRACT_SIZE);
         ++fract_index;
     } 
+	//print_float_number(&number, 4950, 0);
 	return (number);
 }
