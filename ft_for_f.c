@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 16:56:33 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/25 20:03:48 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 13:06:04 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int f_len(t_struct *inform)
 		inform->value_is_neg = (inform->value_f < 0) ? 1 : 0;
 		len += 1;
 	}
+	if (inform->space && (!inform->minus && inform->value_f > 0))
+		len += 1;
 	return (len);
 }
 
@@ -37,7 +39,7 @@ int ft_value_f(t_struct *inform, va_list list, int i)
 	char *str;
 	
 	len = 0;
-    inform->value_f = va_arg(list, double);
+    inform->value_f = (inform->l) ? va_arg(list, long double) : va_arg(list, double); // tut
 	inform->govno = ft_float(inform->value_f, inform);
 	len = f_len(inform);
 	return (len);

@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/25 17:55:09 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 12:37:02 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,9 @@ void		ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
 	else
 		str = str_maker(inform, buffer, len);
 	write(1, str, inform->final_size);
-	// free(buffer);
-	// if (inform->type != 's')
-	// 	free(str);
-	// if (inform->type == 'p')
-	// 	free(inform->govno);
+// 	free(buffer);
+// 	if (inform->type != 's')
+// 		free(str);
+// 	if (inform->type == 'p')
+// 		free(inform->govno);
 }

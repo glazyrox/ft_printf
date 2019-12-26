@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:23:18 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/25 16:58:19 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 12:42:28 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size, va
             else
                 inform->h = 1;
         }
-        if (format[i] == 'l')
+        if (format[i] == 'l' || format[i] == 'L')
         {
             if (format[i + 1] == 'l')
             {
@@ -56,7 +56,7 @@ int ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size
 		{
 			if (format[i - 1]  == '-'|| (inform->minus && inform->zero) || (inform->minus && inform->plus))
 				inform->widthisneg = 1; // отрицательная ширина
-            if (inform->type == 'o' && inform->minus)
+            if ((inform->type == 'o' || inform->type == 'f') && inform->minus)
                 inform->widthisneg = 1;
             if (inform->widthisneg)
                 inform->zero = 0;
@@ -83,7 +83,7 @@ int ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va
             inform->precision = ft_new_atoi(format, i + 1, stop);
             if (inform->precision == 0)
                 inform->dack_prec = 2;
-            inform->zero = (inform->type == 's' && inform->zero) ? 1 : 0;
+            inform->zero = ((inform->type == 's' || inform->type == 'f') && inform->zero) ? 1 : 0;
             inform->stop = i;
             ft_width(inform, format, stop, buff_size, list);
             return (0);

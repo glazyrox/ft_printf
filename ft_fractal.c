@@ -31,10 +31,10 @@ char *float_tostr(t_float *number, t_struct *flags)
 	}
 	if (flags->precision == 0 && flags->dack_prec && number->fract[MAX_FRACT_SIZE - 1] >= 53)
 		str[i - 1] += 1;
-	else
+	else if (!flags->dack_prec || flags->sharp == 1) // tut sharp
 	{
 		str[i++] = '.';
-		while (j <= flags->precision)
+		while (j <= flags->precision) // eto
 		{
 			str[i] = number->fract[MAX_FRACT_SIZE - j] + '0';
 			++j;
@@ -49,8 +49,10 @@ char *float_tostr(t_float *number, t_struct *flags)
 			{
 				while (str[i] == '9')
 				{
+					if (str[i - 1] == '.') // eto
+						str[i - 2] += 1; // eto
 					str[i] = '0';
-					if (str[i - 1] != '9')
+					if (str[i - 1] != '9' && str[i - 1] != '.') // eto
 					{
 						str[i - 1] += 1;
 						break;
