@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:00:25 by bjasper           #+#    #+#             */
-/*   Updated: 2019/12/26 16:17:28 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 17:57:18 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ char    *ft_float(long double a, t_struct *flags)
     divis.t_byte.exp -= 16383;
 	if ( divis.t_byte.exp == -16384)
 	{
+		flags->nan_or_inf = 1;
 		if (divis.t_byte.mant << 1)
 		{
+			flags->plus = 0;
 			flags->zero = 0;
 			flags->precision = 0;
 			flags->space = 0;

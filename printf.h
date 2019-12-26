@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:52:54 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/26 16:10:49 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 18:14:17 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct              s_power_of_2
 typedef struct  s_struct
 {
     char type;
+	int castilok; // тот самый фикс возврата чара
     int stop; // костыль для парса
     int plus; //f
     int minus; //f
@@ -93,6 +94,7 @@ typedef struct  s_struct
     int s_len;
     char *govno;
 	int final_size; // общий размер строки за одну обработку!
+	int nan_or_inf;
 }               t_struct;
 
 typedef struct s_buff

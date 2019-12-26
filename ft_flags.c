@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 14:03:07 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/26 13:37:56 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 18:14:27 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,15 @@ char *ft_spacer(char *s1, char sym, t_struct *inform, int len)
         while (i < inform->width - inform->precision)
             s1[i++] = sym;
         if (!ft_flags(s1, inform, i - 1, len))
-            return (1);
+		{
+			inform->castilok = 1;
+		}
     }
     else if (inform->width > len)
     {
         if (!inform->zero)
         {
-            if ((inform->value_is_neg && inform->zero) || (inform->value_is_neg && inform->width - len == 1)) // 
+            if ((inform->value_is_neg && inform->zero) || (inform->value_is_neg && inform->width - len == 1 && inform->type != 'f')) // 
                 len++;
             if (inform->width - len == len && (inform->plus || inform->zero || inform->minus || inform->space))
                 len++;    

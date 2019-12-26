@@ -47,11 +47,11 @@ char *float_tostr(t_float *number, t_struct *flags)
 		--i;
 		if (MAX_FRACT_SIZE - j - 2 >= 0 && number->fract[MAX_FRACT_SIZE - j - 2] + 48 >= '5')
 		{
-			if (str[i] < '9')
+			if (str[i] < '9' && str[i] != '.')
 				str[i] += 1;
 			else
 			{
-				while (str[i] == '9')
+				while (str[i] == '9' && str[i] != '.')
 				{
 					if (str[i - 1] == '.') // eto
 						str[i - 2] += 1; // eto

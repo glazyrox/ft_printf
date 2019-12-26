@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:09:46 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/26 14:17:50 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 18:16:08 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char		*start_by_width(t_struct *inform, char *buffer, int len)
 	else
 	{
 		str = ft_memalloc(inform->final_size + 1);
-		if (!(ft_spacer(str, ' ', inform, len)))
+		if ((ft_spacer(str, ' ', inform, len) == NULL) && !inform->castilok)
 			len -= (len != inform->precision || inform->space || inform->value_is_neg || inform->plus) ? 1 : 0;
 		while (str[i])
 			i++;
@@ -126,9 +126,10 @@ void		ft_make_arg(t_struct *inform, t_buff *buff_size, int len)
 	else
 		str = str_maker(inform, buffer, len);
 	write(1, str, inform->final_size);
-// 	free(buffer);
-// 	if (inform->type != 's')
-// 		free(str);
-// 	if (inform->type == 'p')
-// 		free(inform->govno);
+	if (!inform->nan_or_inf)
+		free(buffer);
+	if (inform->type != 's')
+		free(str);
+	if (inform->type == 'p')
+		free(inform->govno);
 }

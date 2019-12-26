@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 16:56:33 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/26 15:32:12 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 17:44:30 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int f_len(t_struct *inform)
 		len += 1;
 	}
 	if (inform->space && (!inform->minus && inform->value_f > 0))
+		len += 1;
+	if (inform->space && (inform->minus && inform->value_f > 0))
 		len += 1;
 	return (len);
 }

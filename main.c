@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:03:43 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/26 16:12:49 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2019/12/26 18:15:32 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(void)
     // int a = -42;
     // int b = -144;
     // int c = 1455;
-    printf("\nreturn %d\n", ft_printf("% .5f", NAN));
-    printf("\nreturn %d\n", printf("% .5f", NAN));
+    printf("\nreturn %d\n", ft_printf("%08.5d", 34));
+    printf("\nreturn %d\n", printf("%08.5d", 34));
     return (0);
 }
