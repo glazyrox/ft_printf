@@ -33,7 +33,7 @@ char *float_tostr(t_float *number, t_struct *flags)
 	// {
 		
 	// }
-	if (flags->precision == 0 && flags->dack_prec && number->fract[MAX_FRACT_SIZE - 1] >= 53 && MAX_FRACT_SIZE >= 1)
+	if (flags->precision == 0 && flags->dack_prec && number->fract[MAX_FRACT_SIZE - 1] >= 5)
 		str[i - 1] += 1;
 	else if (!flags->dack_prec || flags->sharp == 1) // tut sharp
 	{
@@ -45,7 +45,7 @@ char *float_tostr(t_float *number, t_struct *flags)
 			++i;
 		}
 		--i;
-		if (MAX_FRACT_SIZE - j - 2 >= 0 && number->fract[MAX_FRACT_SIZE - j - 2] + 48 >= '5')
+		if (MAX_FRACT_SIZE - j >= 0 && number->fract[MAX_FRACT_SIZE - j] + 48 >= '5')
 		{
 			if (str[i] < '9' && str[i] != '.')
 				str[i] += 1;

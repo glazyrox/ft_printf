@@ -6,15 +6,13 @@
 #    By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/22 16:20:25 by rgwayne-          #+#    #+#              #
-#    Updated: 2019/12/25 18:19:13 by rgwayne-         ###   ########.fr        #
+#    Updated: 2020/01/13 16:53:31 by rgwayne-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-//FLAGS = -Wall -Wextra -Werror
-
-SRC = 	ft_printf.c \
+SRC = ft_printf.c \
 		parser.c \
 		converser.c \
 		string_maker.c \
@@ -37,14 +35,25 @@ SRC = 	ft_printf.c \
 		ft_float.c \
 		ft_long_ariphm.c
 
+INCL = printf.h
+
+GCC_FLAGS = -Wall -Werror -Wextra
+
+OBJ = $(SRC:.c=.o)
+
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
-$(NAME):
-	gcc -g $(FLAGS) -c $(SRC)
-	ar -rc $(NAME) *.o
+%.o: %.c
+	gcc -c $< -o $@
 
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+	
 clean:
-	rm -rf *.o
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)

@@ -6,17 +6,17 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:02:37 by rgwayne-          #+#    #+#             */
-/*   Updated: 2019/12/25 16:41:53 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2020/01/13 16:52:12 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-char *ft_strpcat(char *s1, t_struct *inform, int len)
+char	*ft_strpcat(char *s1, t_struct *inform, int len)
 {
 	int i;
 	int g;
-	
+
 	i = 0;
 	g = 2;
 	s1[0] = '0';
@@ -70,7 +70,7 @@ char	*ft_strfncat(char *s1, const char *s2, size_t n)
 	return (s1);
 }
 
-int	ft_new_atoi(const char *str, int start, int end)
+int		ft_new_atoi(const char *str, int start, int end)
 {
 	int				i;
 	long long int	nbr;
