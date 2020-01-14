@@ -6,7 +6,7 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:03:43 by rgwayne-          #+#    #+#             */
-/*   Updated: 2020/01/13 16:44:40 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2020/01/14 21:19:11 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int main(void)
     // int b = -144;
     // int c = 1455;
 	double special;
-    printf("\nreturn %d\n", ft_printf("%2$c", 5.75L));
-    printf("\nreturn %d\n", printf("%2$c", 5.75L));
+    *((unsigned long *)(&special)) = DBL_NZERO;
+    printf("\nreturn %d\n", ft_printf("%llu", ULLONG_MAX));
+    printf("\nreturn %d\n", printf("%llu", ULLONG_MAX));
     return (0);
 }
