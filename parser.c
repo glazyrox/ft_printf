@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bjasper <bjasper@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:44:25 by bjasper           #+#    #+#             */
-/*   Updated: 2020/01/14 17:55:29 by bjasper          ###   ########.fr       */
+/*   Updated: 2020/01/15 21:25:41 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size, va_list list)
+int	ft_modifiers(char *format, t_struct *inform, t_buff\
+								*buff_size, va_list list)
 {
 	int i;
 
 	i = -1;
-	while (++i < stop)
+	while (++i < inform->givup)
 	{
 		if (format[i] == 'h')
 		{
@@ -38,7 +39,7 @@ int	ft_modifiers(char *format, t_struct *inform, int stop, t_buff *buff_size, va
 	return (0);
 }
 
-int	ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size, va_list list)
+int	ft_width(t_struct *inform, char *format, t_buff *buff_size, va_list list)
 {
 	int i;
 
@@ -47,7 +48,8 @@ int	ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size
 	{
 		if (format[i] >= 49 && format[i] <= 57)
 		{
-			if (format[i - 1]  == '-' || (inform->minus && inform->zero) || (inform->minus && inform->plus))
+			if (format[i - 1] == '-' || (inform->minus && inform->zero)\
+										|| (inform->minus && inform->plus))
 				inform->widthisneg = 1;
 			if ((inform->type == 'o' || inform->type == 'f') && inform->minus)
 				inform->widthisneg = 1;
@@ -60,39 +62,41 @@ int	ft_width(t_struct *inform, char *format, int formodifiers, t_buff *buff_size
 	}
 	if (inform->precision > inform->width)
 		inform->zero = 0;
-	ft_modifiers(format, inform, formodifiers, buff_size, list);
+	ft_modifiers(format, inform, buff_size, list);
 	return (0);
 }
 
-int	ft_precision(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list list)
+int	ft_precision(t_struct *inform, char *format,\
+					t_buff *buff_size, va_list list)
 {
-	int i;
-
-	i = 0;
-	while (i++ < stop)
+	inform->givup = 0;
+	while (inform->givup++ < inform->fuckup)
 	{
-		if (format[i] == '.')
+		if (format[inform->givup] == '.')
 		{
-			inform->precision = ft_new_atoi(format, i + 1, stop);
+			inform->precision = ft_new_atoi(format,\
+					inform->givup + 1, inform->fuckup);
 			if (inform->precision == 0)
 				inform->dack_prec = 2;
-			inform->zero = ((inform->type == 's' || inform->type == 'f') && inform->zero) ? 1 : 0;
-			inform->stop = i;
-			ft_width(inform, format, stop, buff_size, list);
+			inform->zero = ((inform->type == 's' || inform->type == 'f')\
+													&& inform->zero) ? 1 : 0;
+			inform->stop = inform->givup;
+			inform->givup = inform->fuckup;
+			ft_width(inform, format, buff_size, list);
 			return (0);
 		}
-		inform->stop = i;
+		inform->stop = inform->givup;
 	}
-	ft_width(inform, format, i, buff_size, list);
+	ft_width(inform, format, buff_size, list);
 	return (0);
 }
 
-int	ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list list)
+int	ft_flag(t_struct *inform, char *format, t_buff *buff_size, va_list list)
 {
 	int i;
 
 	i = 0;
-	while (i++ < stop)
+	while (i++ < inform->fuckup)
 	{
 		if (format[i] >= 49 && format[i] <= 57)
 			break ;
@@ -109,29 +113,28 @@ int	ft_flag(t_struct *inform, char *format, int stop, t_buff *buff_size, va_list
 	}
 	if (inform->plus)
 		inform->space = 0;
-	ft_precision(inform, format, stop, buff_size, list);
+	ft_precision(inform, format, buff_size, list);
 	return (0);
 }
 
 int	ft_type(char *format, va_list list, t_buff *buff_size)
 {
-	int			i;
 	t_struct	*inform;
 
-	i = 0;
 	inform = ft_memalloc(sizeof(t_struct));
-	while (format[i++])
+	inform->fuckup = 0;
+	while (format[inform->fuckup++])
 	{
-		if (ft_diouxx(inform, format[i]))
+		if (ft_diouxx(inform, format[inform->fuckup]))
 		{
-			ft_flag(inform, (char *)format, i, buff_size, list);
-			if (!(format[i + 1] == '\0'))
+			ft_flag(inform, (char *)format, buff_size, list);
+			if (!(format[inform->fuckup + 1] == '\0'))
 			{
 				buff_size->test = 1;
-				return (i);
+				return (inform->fuckup);
 			}
-			if (format[i + 1] == '\0')
-				return (i);
+			if (format[inform->fuckup + 1] == '\0')
+				return (inform->fuckup);
 			break ;
 		}
 	}

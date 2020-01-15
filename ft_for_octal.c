@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/12 16:56:48 by rgwayne-          #+#    #+#             */
-/*   Updated: 2020/01/14 21:09:44 by rgwayne-         ###   ########.fr       */
+/*   Created: 2020/01/15 19:32:14 by rgwayne-          #+#    #+#             */
+/*   Updated: 2020/01/15 20:05:43 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <limits.h>
 
 void	ft_octal(t_struct *inform, int flag)
 {
@@ -36,38 +35,16 @@ void	ft_octal(t_struct *inform, int flag)
 
 int		ft_value_o(t_struct *inform, va_list list, int i)
 {
-	 int len;
-
-    len = 0;
-    if (i == 1)
-    {
-    	inform->value_d = va_arg(list, unsigned long);
-        ft_octal(inform, 1);
-		len = hex_len(inform->value_d, inform);
-    }
+	if (i == 1)
+		inform->value_d = va_arg(list, unsigned long);
 	else if (i == 2)
-    {
-        inform->value_d = va_arg(list, long long);
-        ft_octal(inform, 2);
-		len = hex_len(inform->value_d, inform);
-    }
+		inform->value_d = va_arg(list, long long);
 	else if (i == 3)
-    {
-        inform->value_d = va_arg(list, unsigned int);
-        ft_octal(inform, 3);
-		len = hex_len(inform->value_d, inform);
-    }
+		inform->value_d = va_arg(list, unsigned int);
 	else if (i == 4)
-    {
-        inform->value_d = va_arg(list, int);
-        ft_octal(inform, 4);
-		len = hex_len(inform->value_d, inform);
-    }
+		inform->value_d = va_arg(list, int);
 	if (i == 5)
-    {
-        inform->value_d = va_arg(list, unsigned long long int);
-        ft_octal(inform, 5);
-		len = hex_len(inform->value_d, inform);
-    }
-    return (len);
+		inform->value_d = va_arg(list, unsigned long long int);
+	ft_octal(inform, i);
+	return (hex_len(inform->value_d, inform));
 }
