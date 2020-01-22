@@ -6,12 +6,16 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:00:25 by bjasper           #+#    #+#             */
-/*   Updated: 2020/01/14 20:42:57 by rgwayne-         ###   ########.fr       */
+/*   Updated: 2020/01/16 19:36:57 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <float.h>
+
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, '\0', n);
+}
 
 char	*nan_or_inf(t_print divis, t_struct *flags)
 {
@@ -20,12 +24,12 @@ char	*nan_or_inf(t_print divis, t_struct *flags)
 	{
 		flags->plus = 0;
 		flags->zero = 0;
-		flags->precision = 0;
+		flags->p = 0;
 		flags->space = 0;
 		return ("nan");
 	}
 	flags->zero = 0;
-	flags->precision = 0;
+	flags->p = 0;
 	return ("inf");
 }
 
@@ -55,7 +59,7 @@ char	*ft_float(long double a, t_struct *flags)
 		return (nan_or_inf(divis, flags));
 	if (divis.t_byte.sign == 1 && !flags->nan_or_inf)
 	{
-		flags->value_is_neg = 1;
+		flags->nv = 1;
 		flags->plus = 0;
 	}
 	flags->i = 0;

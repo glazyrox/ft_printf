@@ -6,36 +6,36 @@
 /*   By: rgwayne- <rgwayne-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 17:32:52 by rgwayne-          #+#    #+#             */
-/*   Updated: 2020/01/13 14:37:31 by bjasper          ###   ########.fr       */
+/*   Updated: 2020/01/16 20:28:27 by rgwayne-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	flag_clear(t_struct *inform)
+void	flag_clear(t_struct *inf)
 {
-	inform->plus = 0;
-	inform->minus = 0;
-	inform->space = 0;
-	inform->sharp = 0;
-	if (inform->type != '%')
-		inform->zero = 0;
-	inform->precision = 0;
-	inform->dack_prec = 0;
+	inf->plus = 0;
+	inf->minus = 0;
+	inf->space = 0;
+	inf->sharp = 0;
+	if (inf->type != '%')
+		inf->zero = 0;
+	inf->p = 0;
+	inf->dack_prec = 0;
 }
 
-int		ft_value_c(t_struct *inform, va_list list, int i)
+int		ft_value_c(t_struct *inf, va_list list)
 {
 	int len;
 
 	len = 0;
-	inform->value_hex[0] = va_arg(list, int);
-	if (inform->value_hex[0] == '\0')
-		inform->null_for_c = 1;
-	if (inform->type == '%')
-		inform->value_hex[0] = '%';
-	inform->value_hex[0] = (unsigned char)inform->value_hex[0];
-	flag_clear(inform);
+	inf->value_hex[0] = va_arg(list, int);
+	if (inf->value_hex[0] == '\0')
+		inf->null_for_c = 1;
+	if (inf->type == '%')
+		inf->value_hex[0] = '%';
+	inf->value_hex[0] = (unsigned char)inf->value_hex[0];
+	flag_clear(inf);
 	len += 1;
 	return (len);
 }
